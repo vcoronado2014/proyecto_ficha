@@ -195,6 +195,10 @@
                                 </div>
                                 <div class="cell colspan11">
                                     <dx:ASPxTextBox ID="txtDireccionPers" runat="server" Native="True" Theme="Mulberry" Width="100%">
+                                        <ValidationSettings ValidationGroup="frm">
+                                            <RegularExpression ErrorText="" />
+                                            <RequiredField ErrorText="Requerido" />
+                                        </ValidationSettings>
                                     </dx:ASPxTextBox>
                                 </div>
                             </div>
@@ -286,6 +290,8 @@
                                  </div>
                                 <div class="cell colspan2">
                                      <button type="submit">Guardar</button>
+                                     <dx:ASPxButton ID="ASPxButton1" runat="server" AutoPostBack="False" Text="ASPxButton" ValidationGroup="frm">
+                                     </dx:ASPxButton>
                                 </div>
                                 <div class="cell colspan2">
                                      <button type="submit">Cancelar</button>

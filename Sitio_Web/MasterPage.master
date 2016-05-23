@@ -1,0 +1,107 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+<%@ Register Assembly="DevExpress.Web.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>Proyecto Patrick</title>
+    <link href="css/metro.css" rel="stylesheet"/>
+    <link href="css/metro-icons.css" rel="stylesheet"/>
+    <link href="css/metro-responsive.css" rel="stylesheet"/>
+    <link href="css/metro-schemes.css" rel="stylesheet"/>
+
+    <link href="css/docs.css" rel="stylesheet"/>
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/metro.js"></script>
+    <script src="js/docs.js"></script>
+    <script src="js/prettify/run_prettify.js"></script>
+    <script src="js/ga.js"></script>
+
+    <style type="text/css">
+
+        .page-content {
+            padding-top: 0px;
+        }
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="bg-grayLighter">
+    <form id="form1" class="grid condensed" runat="server" style="margin-top:0px;">
+        <%--        <div class="row cells12 align-center">
+            <asp:Image ID="imgSuperior" runat="server" ImageUrl="~/images/encabezado.png" CssClass="colspan12 auto-size" />
+
+        </div>--%>
+        <div class="row cells2 align-center bg-cobalt">
+            <asp:Image ID="imgSuperior" runat="server" ImageUrl="~/images/encabezado.png" CssClass="cell auto-size" />
+            <div class="cell cells3">
+                <div class="cell">
+                    <span class="mif-user-check fg-white padding10" style="float:right;"> Usuario:
+                        <asp:Literal ID="litUsuario" runat="server">Sin Registrar</asp:Literal></span>
+                </div>
+                <div class="cell">
+                    <span class="mif-earth2 fg-white padding10" style="float:right;"> Rol:
+                            <asp:Literal ID="litRol" runat="server">Sin registrar</asp:Literal>
+                        <dx:ASPxLabel ID="lblIdInstGlobal" runat="server" ClientInstanceName="lblIdInstGlobal" ClientVisible="False">
+                        </dx:ASPxLabel>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row cells2 bg-lightBlue">
+            <!-- información del usuario, institución, etc -->
+            <div class="cell">
+                <asp:Panel ID="pnlDatos" runat="server" Width="100%" CssClass="cell">
+
+                    <h1 class="tag bg-darkIndigo rounded fg-white padding10" style="font-size: 1.5em;">Recursos Humanos V1.0</h1>
+
+
+
+                </asp:Panel>
+            </div>
+            <div class="cell">
+                <!-- aca va el menu -->
+            </div>
+            
+        </div>
+
+
+        <div class="grid">
+            <div class="row cells12">
+                <div class="cell colspan2 padding20">
+                    <dx:ASPxNavBar ID="nvInicio" runat="server" OnItemClick="nvInicio_ItemClick" Theme="Metropolis" Width="100%" OnItemCommand="nvInicio_ItemCommand">
+                        <Groups>
+                            <dx:NavBarGroup Name="Inicio" NavigateUrl="~/Default.aspx" Text="Inicio">
+                                <Items>
+                                    <dx:NavBarItem Name="IniciarSesion" NavigateUrl="~/Ingreso.aspx" Text="Iniciar Sesión" Visible="False">
+                                    </dx:NavBarItem>
+                                    <dx:NavBarItem Name="CerrarSesion" Text="Cerrar Sesión" Visible="False">
+                                    </dx:NavBarItem>
+                                </Items>
+                            </dx:NavBarGroup>
+                        </Groups>
+                    </dx:ASPxNavBar>
+                    <dx:ASPxNavBar ID="nvMenu" runat="server"  Theme="Metropolis" Width="100%" >
+                        
+                    </dx:ASPxNavBar>
+                </div>
+                <div class="cell colspan10">
+                    <div class="container page-content">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+                        </asp:ContentPlaceHolder>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    
+    </form>
+</body>
+</html>

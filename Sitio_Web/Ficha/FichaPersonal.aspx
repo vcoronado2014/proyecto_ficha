@@ -60,7 +60,7 @@
                                 </div>
 
                             </div>
-                            <!-- ACA VAN LOS APELLIDOS -->
+                            <!-- ACA VAN LOS APELLIDOSs -->
                             <div class="row cells12 topRow" >
                                 <div class="cell colspan1">
                                     <dx:ASPxLabel ID="ASPxLabel4" runat="server" Text="P. Apellido">

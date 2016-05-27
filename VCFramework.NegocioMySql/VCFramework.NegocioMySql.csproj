@@ -46,10 +46,14 @@
     <Compile Include="EnvoltorioMenu.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RrhhComuna.cs" />
     <Compile Include="RrhhFichaPersonal.cs" />
     <Compile Include="RrhhGrupoMenu.cs" />
+    <Compile Include="RrhhProvincia.cs" />
+    <Compile Include="RrhhRegion.cs" />
     <Compile Include="RrhhRlRolMenu.cs" />
     <Compile Include="RrhhRol.cs" />
+    <Compile Include="RrhhSexo.cs" />
     <Compile Include="RrhhSubgrupoMenu.cs" />
     <Compile Include="Utiles.cs" />
   </ItemGroup>

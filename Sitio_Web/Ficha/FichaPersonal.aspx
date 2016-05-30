@@ -30,7 +30,7 @@
         <dx:ASPxCallbackPanel ID="pnlPrincipal" runat="server" ClientInstanceName="pnlPrincipal" Width="100%">
             <PanelCollection>
                 <dx:PanelContent runat="server">
-                    <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="2" Theme="Mulberry" Width="100%">
+                    <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="0" Theme="Mulberry" Width="100%">
                         <TabPages>
                             <dx:TabPage Text="Datos Personales">
                                 <ContentCollection>
@@ -381,14 +381,31 @@ cmbComunaPers.PerformCallback(s.GetValue());
                                                     </div>
                                                     <div class="cell colspan5">
 
-                                                        <dx:ASPxComboBox ID="cmbRegionEmp" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" Native="True"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbRegionEmp" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" Native="True" ClientInstanceName="cmbRegionEmp" DataSourceID="odsRegionEmp" SelectedIndex="0" TextField="RegDescripcion" ValueField="RegId">
+                                                            <ClientSideEvents SelectedIndexChanged="function(s, e) {
+	cmbProvEmp.PerformCallback(s.GetValue());
+	cmbComEmp.PerformCallback('0');
+
+}" />
+                                                        </dx:ASPxComboBox>
+                                                        <asp:ObjectDataSource ID="odsRegionEmp" runat="server" SelectMethod="ListarRegion" TypeName="VCFramework.NegocioMySql.RrhhRegion"></asp:ObjectDataSource>
                                                     </div>
                                                     <div class="cell colspan1">
                                                         <dx:ASPxLabel ID="ASPxLabel27" runat="server" Text="Provincia" Style="float: right; padding-right: 5PX;">
                                                         </dx:ASPxLabel>
                                                     </div>
                                                     <div class="cell colspan5">
-                                                        <dx:ASPxComboBox ID="cmbProvEmp" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" Native="True"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbProvEmp" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" Native="True" ClientInstanceName="cmbProvEmp" DataSourceID="odsProvEmp" OnCallback="cmbProvEmp_Callback" TextField="ProvDescripcion" ValueField="ProvId">
+                                                            <ClientSideEvents ValueChanged="function(s, e) {
+	cmbComEmp.PerformCallback(s.GetValue());
+
+}" />
+                                                        </dx:ASPxComboBox>
+                                                        <asp:ObjectDataSource ID="odsProvEmp" runat="server" SelectMethod="ListarProvinciasPorRegion" TypeName="VCFramework.NegocioMySql.RrhhProvincia">
+                                                            <SelectParameters>
+                                                                <asp:ControlParameter ControlID="cmbRegionEmp" DefaultValue="0" Name="idReg" PropertyName="Value" Type="Int32" />
+                                                            </SelectParameters>
+                                                        </asp:ObjectDataSource>
                                                     </div>
                                                 </div>
                                                 <!-- ACA VAN Comuna, Imail -->
@@ -399,7 +416,12 @@ cmbComunaPers.PerformCallback(s.GetValue());
                                                     </div>
                                                     <div class="cell colspan5">
 
-                                                        <dx:ASPxComboBox ID="cmbComunaEmp" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" Native="True"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbComunaEmp" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" Native="True" ClientInstanceName="cmbComEmp" DataSourceID="odsComEmp" OnCallback="cmbComunaEmp_Callback" TextField="ComDescripcion" ValueField="ComId"></dx:ASPxComboBox>
+                                                        <asp:ObjectDataSource ID="odsComEmp" runat="server" SelectMethod="ListarComunasPorProvincia" TypeName="VCFramework.NegocioMySql.RrhhComuna">
+                                                            <SelectParameters>
+                                                                <asp:ControlParameter ControlID="cmbProvEmp" DefaultValue="0" Name="idProv" PropertyName="Value" Type="Int32" />
+                                                            </SelectParameters>
+                                                        </asp:ObjectDataSource>
                                                     </div>
                                                     <div class="cell colspan1">
                                                         <dx:ASPxLabel ID="ASPxLabel29" runat="server" Text="Telefono" Style="float: right; padding-right: 5PX;">

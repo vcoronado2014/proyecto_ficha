@@ -44,4 +44,32 @@ public partial class Ficha_FichaPersonal : System.Web.UI.Page
     {
 
     }
+
+    protected void cmbProvEmp_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
+    {
+        if (e.Parameter != null)
+        {
+            int idReg = int.Parse(e.Parameter.ToString());
+            if (idReg > 0)
+            {
+                odsProvEmp.SelectParameters[0].DefaultValue = idReg.ToString();
+                odsProvEmp.DataBind();
+                cmbProvEmp.DataBind();
+            }
+        }
+    }
+
+    protected void cmbComunaEmp_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
+    {
+        if (e.Parameter != null)
+        {
+            int idPrv = int.Parse(e.Parameter.ToString());
+            if (idPrv > 0)
+            {
+                odsComEmp.SelectParameters[0].DefaultValue = idPrv.ToString();
+                odsComEmp.DataBind();
+                cmbComunaEmp.DataBind();
+            }
+        }
+    }
 }

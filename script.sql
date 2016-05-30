@@ -11,6 +11,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Volcando estructura de base de datos para rrhh
+DROP DATABASE IF EXISTS `rrhh`;
 CREATE DATABASE IF NOT EXISTS `rrhh` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `rrhh`;
 
@@ -26,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `rrhh_afp` (
   PRIMARY KEY (`afp_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla rrhh.rrhh_afp: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla rrhh.rrhh_afp: ~4 rows (aproximadamente)
 DELETE FROM `rrhh_afp`;
 /*!40000 ALTER TABLE `rrhh_afp` DISABLE KEYS */;
 INSERT INTO `rrhh_afp` (`afp_id`, `afp_descripcion`, `afp_porcentaje`, `afp_estado`, `afp_eliminado`) VALUES
@@ -528,9 +529,9 @@ CREATE TABLE IF NOT EXISTS `rrhh_convenio_previsional` (
   `cnpe_estado` int(11) NOT NULL,
   `cnpe_eliminado` int(11) NOT NULL,
   PRIMARY KEY (`cnpe_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla rrhh.rrhh_convenio_previsional: ~36 rows (aproximadamente)
+-- Volcando datos para la tabla rrhh.rrhh_convenio_previsional: ~0 rows (aproximadamente)
 DELETE FROM `rrhh_convenio_previsional`;
 /*!40000 ALTER TABLE `rrhh_convenio_previsional` DISABLE KEYS */;
 /*!40000 ALTER TABLE `rrhh_convenio_previsional` ENABLE KEYS */;
@@ -670,7 +671,7 @@ CREATE TABLE IF NOT EXISTS `rrhh_ficha_personal` (
   PRIMARY KEY (`fipe_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1609 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla rrhh.rrhh_ficha_personal: ~1.352 rows (aproximadamente)
+-- Volcando datos para la tabla rrhh.rrhh_ficha_personal: ~1.350 rows (aproximadamente)
 DELETE FROM `rrhh_ficha_personal`;
 /*!40000 ALTER TABLE `rrhh_ficha_personal` DISABLE KEYS */;
 INSERT INTO `rrhh_ficha_personal` (`fipe_id`, `fipe_rut`, `fipe_dv`, `fipe_nombres`, `fipe_apellido_paterno`, `fipe_apellido_materno`, `fipe_fecha_nacimiento`, `sexo_id`, `nac_id`, `fipe_direccion`, `com_id`, `reg_id`, `nive_id`, `estc_id`, `fipe_telefono_cel`, `fipe_telefono_casa`, `fipe_e_mail`, `emp_id`, `carg_id`, `aren_id`, `cenc_id`, `tico_id`, `fipe_fecha_ingreso`, `fipe_fecha_contrato_vigente`, `fipe_fecha_termino_contrato`, `fipe_numero_dias_vacaciones`, `rol_id`, `afp_id`, `isap_id`, `cjac_id`, `fipe_estado`, `fipe_eliminado`, `fipe_usuario`, `fipe_login`, `fipe_nombre_contacto`, `fipe_telefono_contacto`) VALUES
@@ -756,7 +757,6 @@ INSERT INTO `rrhh_ficha_personal` (`fipe_id`, `fipe_rut`, `fipe_dv`, `fipe_nombr
 	(316, '99222333', '2', 'Mido ', 'Talla', 'Tablas', '2008-11-25 00:00:00', 3, 1, 'otro', 6, 13, 1, 2, '', '', 'Mtalla@meduvi.cl', 1, 0, 0, 0, 0, '2016-05-19 12:19:01', '2016-05-19 12:19:01', '1900-01-01 00:00:00', 30, 2, 1, 1, 1, 1, 0, 'Mtalla', 'Mtalla', 'Mtalla', '11222333'),
 	(317, '789456423', '1', 'Prueba', 'Cinco', 'Meses', '2008-11-11 00:00:00', 3, 1, 'Paulino Alfonso', 6, 13, 2, 2, '', '', 'Pcinco@meduvi.cl', 1, 0, 0, 0, 0, '2016-05-19 12:19:01', '2016-05-19 12:19:01', '1900-01-01 00:00:00', 30, 2, 1, 1, 1, 1, 0, 'Pcinco', 'Pcinco', 'Pcinco', ''),
 	(318, '11167119', '2', 'Viviana', 'Soto ', 'Miranda', '1967-05-10 00:00:00', 2, 1, 'Bernardino Parada ', 6, 13, 8, 7, '', '', 'Vsoto@meduvi.cl', 1, 0, 0, 0, 0, '2016-05-19 12:19:01', '2016-05-19 12:19:01', '1900-01-01 00:00:00', 30, 2, 1, 1, 1, 1, 0, 'Vsoto', 'Vsoto', 'Vsoto', ''),
-	(319, 'sayde', 'x', 'Ximena', 'Fariña', '', '2008-08-13 00:00:00', 2, 1, '', 6, 13, 11, 7, '', '', 'Xfariña@meduvi.cl', 1, 0, 0, 0, 0, '2016-05-19 12:19:01', '2016-05-19 12:19:01', '1900-01-01 00:00:00', 30, 2, 1, 1, 1, 1, 0, 'Xfariña', 'Xfariña', 'Xfariña', ''),
 	(320, '18604760', '5', 'Diego', 'Caceres', 'Soto', '1993-10-30 00:00:00', 3, 1, 'Berandino Parada', 6, 13, 4, 2, '', '', 'Dcaceres@meduvi.cl', 1, 0, 0, 0, 0, '2016-05-19 12:19:01', '2016-05-19 12:19:01', '1900-01-01 00:00:00', 30, 2, 1, 1, 1, 1, 0, 'Dcaceres', 'Dcaceres', 'Dcaceres', ''),
 	(321, '16127811', '4', 'Pablo ', 'Quezada', 'Perez', '1985-11-11 00:00:00', 3, 1, 'Hhhhhh', 6, 13, 11, 2, '', '', 'Pquezada@meduvi.cl', 1, 0, 0, 0, 0, '2016-05-19 12:19:01', '2016-05-19 12:19:01', '1900-01-01 00:00:00', 30, 2, 1, 1, 1, 1, 0, 'Pquezada', 'Pquezada', 'Pquezada', ''),
 	(322, '16127884', 'k', 'Carolina ', 'Mella', 'Aravena', '1985-11-22 00:00:00', 2, 1, 'Capitán Fuentes', 6, 13, 11, 2, '7777777', '7777777', 'Cmella@meduvi.cl', 1, 0, 0, 0, 0, '2016-05-19 12:19:01', '2016-05-19 12:19:01', '1900-01-01 00:00:00', 30, 2, 1, 1, 1, 1, 0, 'Cmella', 'Cmella', 'Cmella', ''),
@@ -1300,7 +1300,6 @@ INSERT INTO `rrhh_ficha_personal` (`fipe_id`, `fipe_rut`, `fipe_dv`, `fipe_nombr
 	(860, '789456123', '2', 'Release', 'Prueba', 'Prueba', '1993-02-28 00:00:00', 3, 1, 'evergreen', 6, 13, 1, 2, '87800808', '', 'Rprueba@meduvi.cl', 1, 0, 0, 0, 0, '2016-05-19 12:19:01', '2016-05-19 12:19:01', '1900-01-01 00:00:00', 30, 2, 1, 1, 1, 1, 0, 'Rprueba', 'Rprueba', 'Rprueba', ''),
 	(861, '11876649', '0', 'Maria Angelica', 'Leon', 'Rojas', '1971-08-22 00:00:00', 2, 1, 'El Acero 10648 Dpto 13', 6, 13, 5, 7, '6325032', '6325032', 'Mleon@meduvi.cl', 1, 0, 0, 0, 0, '2016-05-19 12:19:01', '2016-05-19 12:19:01', '1900-01-01 00:00:00', 30, 2, 1, 1, 1, 1, 0, 'Mleon', 'Mleon', 'Mleon', ''),
 	(862, '56123123', '0', 'Fffffffffff', 'Ffffffffff', '', '2010-11-10 00:00:00', 2, 1, 'eeeeeeeeeeee', 6, 13, 2, 4, '', '', 'Fffffffffff@meduvi.cl', 1, 0, 0, 0, 0, '2016-05-19 12:19:01', '2016-05-19 12:19:01', '1900-01-01 00:00:00', 30, 2, 1, 1, 1, 1, 0, 'Fffffffffff', 'Fffffffffff', 'Fffffffffff', ''),
-	(863, 'NO VALID', 'O', 'Scarlett Lissette', 'Vicuña', 'Rojas', '1999-04-18 00:00:00', 2, 1, 'LAS VERTIENTES 989 ARQUI. OHERENS', 6, 13, 0, 2, '3577114', '', 'Svicuña@meduvi.cl', 1, 0, 0, 0, 0, '2016-05-19 12:19:01', '2016-05-19 12:19:01', '1900-01-01 00:00:00', 30, 2, 1, 1, 1, 1, 0, 'Svicuña', 'Svicuña', 'Svicuña', ''),
 	(864, '2740467', '7', 'Enrique', 'Silva', 'Silva', '2011-11-07 00:00:00', 3, 1, 'guillermo mann', 6, 13, 3, 4, '', '', 'Esilva@meduvi.cl', 1, 0, 0, 0, 0, '2016-05-19 12:19:01', '2016-05-19 12:19:01', '1900-01-01 00:00:00', 30, 2, 1, 1, 1, 1, 0, 'Esilva', 'Esilva', 'Esilva', ''),
 	(865, '100982083', 'k', 'Usuario', 'Noviembre', 'Noviembre', '1995-03-22 00:00:00', 3, 1, 'Prueba', 6, 13, 11, 2, '', '', 'Unoviembre@meduvi.cl', 1, 0, 0, 0, 0, '2016-05-19 12:19:01', '2016-05-19 12:19:01', '1900-01-01 00:00:00', 30, 2, 1, 1, 1, 1, 0, 'Unoviembre', 'Unoviembre', 'Unoviembre', ''),
 	(866, '17800585', '5', 'claudia ', 'castillo', 'diaz', '1987-09-11 00:00:00', 2, 1, 'los limoneros ', 6, 13, 9, 2, '490350', '', 'Ccastillo@meduvi.cl', 1, 0, 0, 0, 0, '2016-05-19 12:19:01', '2016-05-19 12:19:01', '1900-01-01 00:00:00', 30, 2, 1, 1, 1, 1, 0, 'Ccastillo', 'Ccastillo', 'Ccastillo', ''),
@@ -2405,9 +2404,9 @@ CREATE TABLE IF NOT EXISTS `rrhh_rl_rol_menu` (
   `RL_ACTIVO` int(11) NOT NULL DEFAULT '0',
   `RL_ELIMINADO` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`RL_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla rrhh.rrhh_rl_rol_menu: ~45 rows (aproximadamente)
+-- Volcando datos para la tabla rrhh.rrhh_rl_rol_menu: ~44 rows (aproximadamente)
 DELETE FROM `rrhh_rl_rol_menu`;
 /*!40000 ALTER TABLE `rrhh_rl_rol_menu` DISABLE KEYS */;
 INSERT INTO `rrhh_rl_rol_menu` (`RL_ID`, `ROL_ID`, `SGRP_ID`, `RL_ACTIVO`, `RL_ELIMINADO`) VALUES
@@ -2455,7 +2454,8 @@ INSERT INTO `rrhh_rl_rol_menu` (`RL_ID`, `ROL_ID`, `SGRP_ID`, `RL_ACTIVO`, `RL_E
 	(42, 4, 17, 1, 0),
 	(43, 4, 18, 1, 0),
 	(44, 4, 19, 1, 0),
-	(45, 1, 20, 1, 0);
+	(45, 1, 20, 1, 0),
+	(46, 1, 21, 1, 0);
 /*!40000 ALTER TABLE `rrhh_rl_rol_menu` ENABLE KEYS */;
 
 
@@ -2513,9 +2513,9 @@ CREATE TABLE IF NOT EXISTS `rrhh_subgrupo_menu` (
   `SGRP_ACTIVO` int(11) NOT NULL DEFAULT '0',
   `SGRP_ELIMINADO` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`SGRP_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla rrhh.rrhh_subgrupo_menu: ~20 rows (aproximadamente)
+-- Volcando datos para la tabla rrhh.rrhh_subgrupo_menu: ~19 rows (aproximadamente)
 DELETE FROM `rrhh_subgrupo_menu`;
 /*!40000 ALTER TABLE `rrhh_subgrupo_menu` DISABLE KEYS */;
 INSERT INTO `rrhh_subgrupo_menu` (`SGRP_ID`, `SGRP_ITEM`, `SGRP_URL`, `GRP_ID`, `SGRP_ACTIVO`, `SGRP_ELIMINADO`) VALUES
@@ -2538,7 +2538,8 @@ INSERT INTO `rrhh_subgrupo_menu` (`SGRP_ID`, `SGRP_ITEM`, `SGRP_URL`, `GRP_ID`, 
 	(17, 'Solicitud de Clave', '#', 6, 1, 0),
 	(18, 'Cambio de Clave', '#', 6, 1, 0),
 	(19, 'Contacto', '#', 6, 1, 0),
-	(20, 'Configurar Roles', 'Administracion/Menu.aspx', 1, 1, 0);
+	(20, 'Configurar Roles', 'Administracion/Menu.aspx', 1, 1, 0),
+	(21, 'Listado Personal', 'Ficha/ListadoFicha.aspx', 2, 1, 0);
 /*!40000 ALTER TABLE `rrhh_subgrupo_menu` ENABLE KEYS */;
 
 

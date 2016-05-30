@@ -513,7 +513,7 @@ cmbComunaPers.PerformCallback(s.GetValue());
                                                         </dx:ASPxLabel>
                                                     </div>
                                                     <div class="cell colspan5">
-                                                        <dx:ASPxComboBox ID="cmbRol" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsRol" TextField="RolDescripcion" ValueField="RolId"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbRol" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsRol" Native="True" TextField="RolDescripcion" ValueField="RolId"></dx:ASPxComboBox>
                                                         <asp:ObjectDataSource ID="odsRol" runat="server" SelectMethod="ListarRoles" TypeName="VCFramework.NegocioMySql.RrhhRol"></asp:ObjectDataSource>
                                                     </div>
                                                 </div>

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace VCFramework.Entidad
 {
-    class RrhhNivelEstudios
+    public class RrhhNivelEstudios
     {
         public int NiveId { get; set; }
         public string NiveDescripcion { get; set; }

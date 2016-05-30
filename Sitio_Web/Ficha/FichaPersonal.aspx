@@ -30,7 +30,7 @@
         <dx:ASPxCallbackPanel ID="pnlPrincipal" runat="server" ClientInstanceName="pnlPrincipal" Width="100%">
             <PanelCollection>
                 <dx:PanelContent runat="server">
-                    <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="0" Theme="Mulberry" Width="100%">
+                    <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="2" Theme="Mulberry" Width="100%">
                         <TabPages>
                             <dx:TabPage Text="Datos Personales">
                                 <ContentCollection>
@@ -108,7 +108,7 @@
                                                         </dx:ASPxLabel>
                                                     </div>
                                                     <div class="cell colspan2">
-                                                        <dx:ASPxComboBox ID="cmbSexo" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsSexo" SelectedIndex="0" TextField="SexoDescripcion" ValueField="SexoId"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbSexo" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsSexo" TextField="SexoDescripcion" ValueField="SexoId"></dx:ASPxComboBox>
                                                         <asp:ObjectDataSource ID="odsSexo" runat="server" SelectMethod="ListarSexo" TypeName="VCFramework.NegocioMySql.RrhhSexo"></asp:ObjectDataSource>
                                                     </div>
                                                     <div class="cell colspan2" style="padding-left: 5px;">
@@ -116,7 +116,8 @@
                                                         </dx:ASPxLabel>
                                                     </div>
                                                     <div class="cell colspan3">
-                                                        <dx:ASPxComboBox ID="cmbEstCivil" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbEstCivil" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsEstCivil" OnSelectedIndexChanged="cmbEstCivil_SelectedIndexChanged" TextField="EstcDescripcion" ValueField="EstcId"></dx:ASPxComboBox>
+                                                        <asp:ObjectDataSource ID="odsEstCivil" runat="server" SelectMethod="ListarEstCivil" TypeName="VCFramework.NegocioMySql.RrhhEstadoCivil"></asp:ObjectDataSource>
                                                     </div>
                                                 </div>
                                                 <!-- ACA VAN la nacionalidad, nivel educacional -->
@@ -127,14 +128,16 @@
                                                     </div>
                                                     <div class="cell colspan5">
 
-                                                        <dx:ASPxComboBox ID="cmbNacionalidad" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbNacionalidad" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsNacionalidad" TextField="NacDescripcion" ValueField="NacId"></dx:ASPxComboBox>
+                                                        <asp:ObjectDataSource ID="odsNacionalidad" runat="server" SelectMethod="ListarNacionalidad" TypeName="VCFramework.NegocioMySql.RrhhNacionalidad"></asp:ObjectDataSource>
                                                     </div>
                                                     <div class="cell colspan2">
                                                         <dx:ASPxLabel ID="ASPxLabel7" runat="server" Text="Nivel Educacional" Style="float: right; padding-right: 5PX;">
                                                         </dx:ASPxLabel>
                                                     </div>
                                                     <div class="cell colspan4">
-                                                        <dx:ASPxComboBox ID="cmbNEducacional" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbNEducacional" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsNivelEstudio" TextField="NiveDescripcion" ValueField="NiveId"></dx:ASPxComboBox>
+                                                        <asp:ObjectDataSource ID="odsNivelEstudio" runat="server" SelectMethod="ListarNivelEstudio" TypeName="VCFramework.NegocioMySql.RrhhNivelEstudios"></asp:ObjectDataSource>
                                                     </div>
                                                 </div>
                                                 <!-- ACA VAN la Afp e Isapre -->
@@ -145,14 +148,16 @@
                                                     </div>
                                                     <div class="cell colspan5">
 
-                                                        <dx:ASPxComboBox ID="cmbAfp" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbAfp" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsAfp" TextField="AfpDescripcion" ValueField="AfpId"></dx:ASPxComboBox>
+                                                        <asp:ObjectDataSource ID="odsAfp" runat="server" SelectMethod="ListarAfp" TypeName="VCFramework.NegocioMySql.RrhhAfp"></asp:ObjectDataSource>
                                                     </div>
                                                     <div class="cell colspan1">
                                                         <dx:ASPxLabel ID="ASPxLabel12" runat="server" Text="Isapre" Style="float: right; padding-right: 5PX;">
                                                         </dx:ASPxLabel>
                                                     </div>
                                                     <div class="cell colspan5">
-                                                        <dx:ASPxComboBox ID="cmbIsapre" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbIsapre" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsIsapre" TextField="IsapDescripcion" ValueField="IsapId"></dx:ASPxComboBox>
+                                                        <asp:ObjectDataSource ID="odsIsapre" runat="server" SelectMethod="ListarIsapre" TypeName="VCFramework.NegocioMySql.RrhhIsapre"></asp:ObjectDataSource>
                                                     </div>
                                                 </div>
                                                 <!-- ACA VAN la caja, N cargas -->
@@ -163,7 +168,8 @@
                                                     </div>
                                                     <div class="cell colspan5">
 
-                                                        <dx:ASPxComboBox ID="cmbCaja" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbCaja" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsCajaCompensacion" TextField="CjacDescripcion" ValueField="CjacId"></dx:ASPxComboBox>
+                                                        <asp:ObjectDataSource ID="odsCajaCompensacion" runat="server" SelectMethod="ListarCajaCompensacion" TypeName="VCFramework.NegocioMySql.RrhhCajaCompensacion"></asp:ObjectDataSource>
                                                     </div>
                                                     <div class="cell colspan2">
                                                         <dx:ASPxLabel ID="ASPxLabel14" runat="server" Text="Numero Cargas" Style="float: right; padding-right: 5PX;">
@@ -507,7 +513,8 @@ cmbComunaPers.PerformCallback(s.GetValue());
                                                         </dx:ASPxLabel>
                                                     </div>
                                                     <div class="cell colspan5">
-                                                        <dx:ASPxComboBox ID="cmbRol" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbRol" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsRol" TextField="RolDescripcion" ValueField="RolId"></dx:ASPxComboBox>
+                                                        <asp:ObjectDataSource ID="odsRol" runat="server" SelectMethod="ListarRoles" TypeName="VCFramework.NegocioMySql.RrhhRol"></asp:ObjectDataSource>
                                                     </div>
                                                 </div>
                                                 <!-- ACA VAN Usuario, contraseña -->

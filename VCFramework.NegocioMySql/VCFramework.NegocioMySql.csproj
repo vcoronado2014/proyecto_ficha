@@ -46,9 +46,15 @@
     <Compile Include="EnvoltorioMenu.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RrhhAfp.cs" />
+    <Compile Include="RrhhCajaCompensacion.cs" />
     <Compile Include="RrhhComuna.cs" />
+    <Compile Include="RrhhEstadoCivil.cs" />
     <Compile Include="RrhhFichaPersonal.cs" />
     <Compile Include="RrhhGrupoMenu.cs" />
+    <Compile Include="RrhhIsapre.cs" />
+    <Compile Include="RrhhNacionalidad.cs" />
+    <Compile Include="RrhhNivelEstudios.cs" />
     <Compile Include="RrhhProvincia.cs" />
     <Compile Include="RrhhRegion.cs" />
     <Compile Include="RrhhRlRolMenu.cs" />

@@ -39,4 +39,9 @@ public partial class Ficha_FichaPersonal : System.Web.UI.Page
             }
         }
     }
+
+    protected void cmbEstCivil_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 }

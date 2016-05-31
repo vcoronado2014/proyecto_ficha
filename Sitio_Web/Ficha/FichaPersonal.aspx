@@ -30,7 +30,7 @@
         <dx:ASPxCallbackPanel ID="pnlPrincipal" runat="server" ClientInstanceName="pnlPrincipal" Width="100%">
             <PanelCollection>
                 <dx:PanelContent runat="server">
-                    <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="0" Theme="Mulberry" Width="100%">
+                    <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="2" Theme="Mulberry" Width="100%" OnActiveTabChanged="ASPxPageControl1_ActiveTabChanged">
                         <TabPages>
                             <dx:TabPage Text="Datos Personales">
                                 <ContentCollection>
@@ -447,7 +447,8 @@ cmbComunaPers.PerformCallback(s.GetValue());
                                                         </dx:ASPxLabel>
                                                     </div>
                                                     <div class="cell colspan3">
-                                                        <dx:ASPxComboBox ID="cmbTContrato" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbTContrato" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsTipoContrato" Native="True" TextField="TicoDescripcion" ValueField="TicoId"></dx:ASPxComboBox>
+                                                        <asp:ObjectDataSource ID="odsTipoContrato" runat="server" SelectMethod="ListarTipoContrato" TypeName="VCFramework.NegocioMySql.RrhhTipoContrato"></asp:ObjectDataSource>
                                                     </div>
                                                     <div class="cell colspan2">
                                                         <dx:ASPxLabel ID="ASPxLabel30" runat="server" Text="Fecha Ingreso" Style="float: right; padding-right: 5PX;">
@@ -472,14 +473,16 @@ cmbComunaPers.PerformCallback(s.GetValue());
                                                     </div>
                                                     <div class="cell colspan5">
 
-                                                        <dx:ASPxComboBox ID="cmbArea" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbArea" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsAreaNegocio" Native="True" TextField="ArenDescripcion" ValueField="ArenId"></dx:ASPxComboBox>
+                                                        <asp:ObjectDataSource ID="odsAreaNegocio" runat="server" SelectMethod="ListarAreaNegocio" TypeName="VCFramework.NegocioMySql.RrhhAreaNegocio"></asp:ObjectDataSource>
                                                     </div>
                                                     <div class="cell colspan1">
                                                         <dx:ASPxLabel ID="ASPxLabel34" runat="server" Text="C. Costo" Style="float: right; padding-right: 5PX;">
                                                         </dx:ASPxLabel>
                                                     </div>
                                                     <div class="cell colspan5">
-                                                        <dx:ASPxComboBox ID="cmbCCosto" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbCCosto" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsCentroCosto" Native="True" TextField="CencDescripcion" ValueField="CencId"></dx:ASPxComboBox>
+                                                        <asp:ObjectDataSource ID="odsCentroCosto" runat="server" SelectMethod="ListarCentroCosto" TypeName="VCFramework.NegocioMySql.RrhhCentroCosto"></asp:ObjectDataSource>
                                                     </div>
                                                 </div>
                                                 <!-- ACA VAN Cargo, Forma Pago -->
@@ -490,14 +493,16 @@ cmbComunaPers.PerformCallback(s.GetValue());
                                                     </div>
                                                     <div class="cell colspan5">
 
-                                                        <dx:ASPxComboBox ID="cmbCargo" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbCargo" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsCargo" Native="True" TextField="CargDescripcion" ValueField="CargId"></dx:ASPxComboBox>
+                                                        <asp:ObjectDataSource ID="odsCargo" runat="server" SelectMethod="ListarCargo" TypeName="VCFramework.NegocioMySql.RrhhCargo"></asp:ObjectDataSource>
                                                     </div>
                                                     <div class="cell colspan1">
                                                         <dx:ASPxLabel ID="ASPxLabel36" runat="server" Text="F. Pago" Style="float: right; padding-right: 5PX;">
                                                         </dx:ASPxLabel>
                                                     </div>
                                                     <div class="cell colspan5">
-                                                        <dx:ASPxComboBox ID="cmbFormaPago" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbFormaPago" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsFPago" Native="True" TextField="ForpDescripcion" ValueField="ForpId"></dx:ASPxComboBox>
+                                                        <asp:ObjectDataSource ID="odsFPago" runat="server" SelectMethod="ListarFPago" TypeName="VCFramework.NegocioMySql.RrhhFormaPago"></asp:ObjectDataSource>
                                                     </div>
                                                 </div>
                                                 <!-- ACA VAN N Cta, Banco -->

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace VCFramework.Entidad
 {
-    class RrhhTipoContrato
+    public class RrhhTipoContrato
     {
         public int TicoId { get; set; }
         public string TicoDescripcion { get; set; }

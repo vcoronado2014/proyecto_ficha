@@ -72,4 +72,9 @@ public partial class Ficha_FichaPersonal : System.Web.UI.Page
             }
         }
     }
+
+    protected void ASPxPageControl1_ActiveTabChanged(object source, DevExpress.Web.TabControlEventArgs e)
+    {
+
+    }
 }

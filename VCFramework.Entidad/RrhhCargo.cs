@@ -5,7 +5,7 @@ using System.Text;
 
 namespace VCFramework.Entidad
 {
-    class RrhhCargo
+    public class RrhhCargo
     {
         public int CargId { get; set; }
         public string CargDescripcion { get; set; }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace VCFramework.Entidad
 {
-    class RrhhAreaNegocio
+    public class RrhhAreaNegocio
     {
         public int ArenId { get; set; }
         public string ArenDescripcion { get; set; }

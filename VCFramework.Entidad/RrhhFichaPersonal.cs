@@ -45,8 +45,8 @@ namespace VCFramework.Entidad
         public int AfpId { get; set; }
         public int IsapId { get; set; }
         public int CjacId { get; set; }
-        public int CafaId { get; set; }
-        public int CnpeId { get; set; }
+        //public int CafaId { get; set; }
+        //public int CnpeId { get; set; }
         public int FipeEstado { get; set; }
         public int FipeEliminado { get; set; }
         public string FipeUsuario { get; set; }
@@ -55,6 +55,9 @@ namespace VCFramework.Entidad
         public string FipeNombreContacto { get; set; }
 
         public string FipeTelefonoContacto { get; set; }
+
+        public int ProvId { get; set; }
+        public int ForpId { get; set; }
 
     }
 }

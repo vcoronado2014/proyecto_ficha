@@ -5,43 +5,43 @@ using System.Text;
 
 namespace VCFramework.NegocioMySql
 {
-    public class RrhhTipoContrato
+    public class RrhhFPagoDeposito
     {
-        public static List<VCFramework.Entidad.RrhhTipoContrato> ListarTipoContrato()
+        public static List<VCFramework.Entidad.RrhhFpagoDeposito> ObtenerFormaPagoDepositoFipeId(int fipeId)
         {
             VCFramework.NegocioMySql.Factory fac = new VCFramework.NegocioMySql.Factory();
-            List<VCFramework.Entidad.RrhhTipoContrato> lista2 = new List<VCFramework.Entidad.RrhhTipoContrato>();
+            List<VCFramework.Entidad.RrhhFpagoDeposito> lista2 = new List<VCFramework.Entidad.RrhhFpagoDeposito>();
 
 
             //creamos los filtros
             FiltroGenerico filtroActivo = new FiltroGenerico();
-            filtroActivo.Campo = "TICO_ESTADO";
+            filtroActivo.Campo = "FPDE_ESTADO";
             filtroActivo.TipoDato = TipoDatoGeneral.Entero;
             filtroActivo.Valor = "1";
 
             FiltroGenerico filtroEliminado = new FiltroGenerico();
-            filtroEliminado.Campo = "TICO_ELIMINADO";
+            filtroEliminado.Campo = "FPDE_ELIMINADO";
             filtroEliminado.TipoDato = TipoDatoGeneral.Entero;
             filtroEliminado.Valor = "0";
+
+            FiltroGenerico filtroFipe = new FiltroGenerico();
+            filtroFipe.Campo = "FIPE_ID";
+            filtroFipe.TipoDato = TipoDatoGeneral.Entero;
+            filtroFipe.Valor = fipeId.ToString();
 
             //CREAMOS UNA LISTA DE FILTROS PARA PASARLOS COMO PARAMETROS
             List<FiltroGenerico> filtros = new List<FiltroGenerico>();
             //agregamos los filtros a la lista
             filtros.Add(filtroActivo);
             filtros.Add(filtroEliminado);
+            filtros.Add(filtroFipe);
             //ahora leemos
-            List<object> lista = fac.Leer<VCFramework.Entidad.RrhhTipoContrato>(filtros);
+            List<object> lista = fac.Leer<VCFramework.Entidad.RrhhFpagoDeposito>(filtros);
             if (lista != null)
             {
-                lista2 = lista.Cast<VCFramework.Entidad.RrhhTipoContrato>().ToList();
+                lista2 = lista.Cast<VCFramework.Entidad.RrhhFpagoDeposito>().ToList();
             }
-            if (lista2 != null && lista2.Count > 0)
-            {
-                Entidad.RrhhTipoContrato ent = new Entidad.RrhhTipoContrato();
-                ent.TicoDescripcion = "Seleccione";
-                ent.TicoId = 0;
-                lista2.Insert(0, ent);
-            }
+
             return lista2;
         }
     }

@@ -5,15 +5,15 @@ using System.Text;
 
 namespace VCFramework.Entidad
 {
-    class RrhhCargaFamiliar
+    public class RrhhCargaFamiliar
     {
-        public int CafaId { get; set; }
-        public string CafaNombre { get; set; }
-        public DateTime CafaFechaNacimiento { get; set; }
+        public int CarfId { get; set; }
+        public string CarfNombres { get; set; }
+        public DateTime CarFechaNacimiento { get; set; }
         public int SexId { get; set; }
-        public int IdVin { get; set; }
-        public int IdEst { get; set; }
-        public int CafaEstado { get; set; }
-        public int CafaEliminado { get; set; }
+        public int VinId { get; set; }
+        public int FipeId { get; set; }
+        public int CarfEstado { get; set; }
+        public int CarfEliminado { get; set; }
     }
 }

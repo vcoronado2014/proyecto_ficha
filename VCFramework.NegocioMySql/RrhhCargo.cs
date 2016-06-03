@@ -35,6 +35,13 @@ namespace VCFramework.NegocioMySql
             {
                 lista2 = lista.Cast<VCFramework.Entidad.RrhhCargo>().ToList();
             }
+            if (lista2 != null && lista2.Count > 0)
+            {
+                Entidad.RrhhCargo ent = new Entidad.RrhhCargo();
+                ent.CargDescripcion = "Seleccione";
+                ent.CargId = 0;
+                lista2.Insert(0, ent);
+            }
 
             return lista2;
         }

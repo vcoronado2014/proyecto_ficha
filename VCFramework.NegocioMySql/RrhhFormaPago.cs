@@ -35,6 +35,13 @@ namespace VCFramework.NegocioMySql
             {
                 lista2 = lista.Cast<VCFramework.Entidad.RrhhFormaPago>().ToList();
             }
+            if (lista2 != null && lista2.Count > 0)
+            {
+                Entidad.RrhhFormaPago ent = new Entidad.RrhhFormaPago();
+                ent.ForpDescripcion = "Seleccione";
+                ent.ForpId = 0;
+                lista2.Insert(0, ent);
+            }
 
             return lista2;
         }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace VCFramework.Entidad
 {
-    class RrhhFpagoDeposito
+    public class RrhhFpagoDeposito
     {
         public int FpdeId { get; set; }
         public int ForpId { get; set; }
@@ -13,5 +13,6 @@ namespace VCFramework.Entidad
         public string FpdeNCuenta { get; set; }
         public int FpdeEstado { get; set; }
         public int FpdeEliminado { get; set; }
+        public int FipeId { get; set; }
     }
 }

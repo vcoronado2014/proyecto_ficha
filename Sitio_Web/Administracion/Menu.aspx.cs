@@ -9,7 +9,14 @@ public partial class Administracion_Menu : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //acá siempre debemos validaar el rol para entrar a esta página
+        VCFramework.Entidad.RrhhFichaPersonal usu = new VCFramework.Entidad.RrhhFichaPersonal();
+        if (Session["USUARIO_AUTENTICADO"] != null)
+        {
+            usu = Session["USUARIO_AUTENTICADO"] as VCFramework.Entidad.RrhhFichaPersonal;
+        }
+        else
+            Response.Redirect("~/default.aspx");
     }
 
     protected void lstGrupos_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)

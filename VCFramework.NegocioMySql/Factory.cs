@@ -236,7 +236,7 @@ namespace VCFramework.NegocioMySql
                 }
             }
 
-            int valorId = int.Parse(obj.ListaCampos.Find(p => p.NombreColumna == nombreIdBD).ValorEntidad.ToString());
+            int valorId = int.Parse(obj.ListaCampos.Find(p => p.NombreColumna.ToUpper() == nombreIdBD.ToUpper()).ValorEntidad.ToString());
             StringBuilder query = new StringBuilder();
             query.AppendFormat("UPDATE {0} SET ", obj.NombreTabla);
             foreach (CamposTabla campo in obj.ListaCampos)

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace VCFramework.Entidad
 {
-    class RrhhEmpresa
+    public class RrhhEmpresa
     {
         public int EmpId { get; set; }
         public int EmpRut { get; set; }
@@ -18,7 +18,8 @@ namespace VCFramework.Entidad
         public String EmpTelefono1 { get; set; }
         public String EmpTelefono2 { get; set; }
         public String EmpTelefono3 { get; set; }
-        public int EmopEstado { get; set; }
+        public int EmpEstado { get; set; }
         public int EmpEliminado { get; set; }
+        public int ProvId { get; set; }
     }
 }

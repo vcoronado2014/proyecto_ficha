@@ -49,12 +49,16 @@
     <Compile Include="RrhhAfp.cs" />
     <Compile Include="RrhhAreaNegocio.cs" />
     <Compile Include="RrhhCajaCompensacion.cs" />
+    <Compile Include="RrhhCargaFamiliar.cs" />
     <Compile Include="RrhhCargo.cs" />
     <Compile Include="RrhhCentroCosto.cs" />
     <Compile Include="RrhhComuna.cs" />
+    <Compile Include="RrhhEmpresa.cs" />
     <Compile Include="RrhhEstadoCivil.cs" />
     <Compile Include="RrhhFichaPersonal.cs" />
     <Compile Include="RrhhFormaPago.cs" />
+    <Compile Include="RrhhFPagoDeposito.cs" />
+    <Compile Include="RrhhFPagoVista.cs" />
     <Compile Include="RrhhGrupoMenu.cs" />
     <Compile Include="RrhhIsapre.cs" />
     <Compile Include="RrhhNacionalidad.cs" />

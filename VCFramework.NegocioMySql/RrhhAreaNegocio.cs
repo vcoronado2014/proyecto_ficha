@@ -35,7 +35,13 @@ namespace VCFramework.NegocioMySql
             {
                 lista2 = lista.Cast<VCFramework.Entidad.RrhhAreaNegocio>().ToList();
             }
-
+            if (lista2 != null && lista2.Count > 0)
+            {
+                Entidad.RrhhAreaNegocio ent = new Entidad.RrhhAreaNegocio();
+                ent.ArenDescripcion = "Seleccione";
+                ent.ArenId = 0;
+                lista2.Insert(0, ent);
+            }
             return lista2;
         }
     }

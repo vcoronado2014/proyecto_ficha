@@ -3,13 +3,14 @@
 <%@ Register assembly="DevExpress.Web.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-     <link href="../css/metro.css" rel="stylesheet"/>
-    <link href="../css/metro-icons.css" rel="stylesheet"/>
+    <link href="../css/metro.css" rel="stylesheet"/>
+    
     <link href="../css/metro-responsive.css" rel="stylesheet"/>
     <link href="../css/metro-schemes.css" rel="stylesheet"/>
 
     <link href="../css/docs.css" rel="stylesheet"/>
-
+    <link href="../css/metro-icons.css" rel="stylesheet"/>
+    
     <script src="../js/jquery-2.1.3.min.js"></script>
     <script src="../js/metro.js"></script>
     <script src="../js/docs.js"></script>
@@ -19,7 +20,15 @@
         .topRow{
             padding-top:5px;
         }
-
+        .font-xx-large{
+                font-size: xx-large;
+        }
+        .font-x-large{
+                font-size: x-large;
+        }
+        .bg-red{background-color:red;}
+        .bg-blue {background-color:darkblue;}
+        .padding-10px{padding:10px;}
     </style>
 
 </asp:Content>
@@ -27,10 +36,11 @@
 
     <div class="row">
 
-        <dx:ASPxCallbackPanel ID="pnlPrincipal" runat="server" ClientInstanceName="pnlPrincipal" Width="100%">
+        <dx:ASPxCallbackPanel ID="pnlPrincipal" runat="server" ClientInstanceName="pnlPrincipal" Width="100%" OnCallback="pnlPrincipal_Callback">
             <PanelCollection>
                 <dx:PanelContent runat="server">
-                    <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="2" Theme="Mulberry" Width="100%" OnActiveTabChanged="ASPxPageControl1_ActiveTabChanged">
+                    <dx:ASPxLabel ID="lblEstado" ClientInstanceName="lblEstado" runat="server" Text="" ClientVisible="false"></dx:ASPxLabel>
+                    <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="0" Theme="Mulberry" Width="100%" OnActiveTabChanged="ASPxPageControl1_ActiveTabChanged">
                         <TabPages>
                             <dx:TabPage Text="Datos Personales">
                                 <ContentCollection>
@@ -48,7 +58,7 @@
 
                                                     </div>
                                                     <div class="cell colspan3">
-                                                        <dx:ASPxTextBox ID="txtRun" runat="server" Native="True" Theme="iOS" Width="100%">
+                                                        <dx:ASPxTextBox ID="txtRun" runat="server" Native="True" Theme="iOS" Width="100%" ClientInstanceName="txtRun">
                                                         </dx:ASPxTextBox>
                                                     </div>
                                                     <div class="cell colspan1">
@@ -56,7 +66,14 @@
                                                         </dx:ASPxLabel>
                                                     </div>
                                                     <div class="cell colspan1">
-                                                        <dx:ASPxTextBox ID="txtDv" runat="server" Native="True" Theme="Mulberry" Width="100%">
+                                                        <dx:ASPxTextBox ID="txtDv" runat="server" Native="True" Theme="Mulberry" Width="100%" ClientInstanceName="txtDv" MaxLength="1">
+                                                            <ClientSideEvents KeyUp="function(s, e) {
+//alert('ajax');	
+}" LostFocus="function(s, e) {
+	//alert('ajax');
+	if (s.GetText() != '' &amp;&amp; txtRun.GetText() != '')
+	pnlPrincipal.PerformCallback('BUSCAR|' + txtRun.GetText() + '|' + s.GetText());
+}" />
                                                         </dx:ASPxTextBox>
                                                     </div>
                                                     <div class="cell colspan1" style="padding-left: 5px;">
@@ -186,7 +203,60 @@
                                                     </div>
                                                     <div class="content padding-5">
                                                         <!-- grilla -->
-                                                        <dx:ASPxGridView ID="grillaCargas" runat="server" Theme="Mulberry" Width="100%"></dx:ASPxGridView>
+                                                        <dx:ASPxGridView ID="grillaCargas" runat="server" Theme="Mulberry" Width="100%" AutoGenerateColumns="False" DataSourceID="odscargasFam" KeyFieldName="CarfId">
+                                                            <Columns>
+                                                                <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" ShowInCustomizationForm="True" ShowNewButtonInHeader="True" VisibleIndex="0">
+                                                                </dx:GridViewCommandColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="CarfId" ShowInCustomizationForm="True" Visible="False" VisibleIndex="1">
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="CarfNombres" ShowInCustomizationForm="True" VisibleIndex="2" Caption="Nombre Completo">
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataDateColumn FieldName="CarFechaNacimiento" ShowInCustomizationForm="True" VisibleIndex="3" Caption="Fecha Nacimiento">
+                                                                </dx:GridViewDataDateColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="SexId" ShowInCustomizationForm="True" Visible="False" VisibleIndex="5">
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="VinId" ShowInCustomizationForm="True" Visible="False" VisibleIndex="6">
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="FipeId" ShowInCustomizationForm="True" Visible="False" VisibleIndex="7">
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="CarfEstado" ShowInCustomizationForm="True" Visible="False" VisibleIndex="8">
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="CarfEliminado" ShowInCustomizationForm="True" Visible="False" VisibleIndex="9">
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataComboBoxColumn FieldName="SexId" ShowInCustomizationForm="True" VisibleIndex="4" Caption="Sexo">
+                                                                    <PropertiesComboBox DataSourceID="odsSexo" TextField="SexoDescripcion" ValueField="SexoId">
+                                                                    </PropertiesComboBox>
+                                                                </dx:GridViewDataComboBoxColumn>
+                                                            </Columns>
+                                                        </dx:ASPxGridView>
+                                                        <asp:ObjectDataSource ID="odscargasFam" runat="server" DeleteMethod="Eliminar" InsertMethod="Insertar" SelectMethod="ListarCargasPorFipeId" TypeName="VCFramework.NegocioMySql.RrhhCargaFamiliar" UpdateMethod="Modificar">
+                                                            <DeleteParameters>
+                                                                <asp:Parameter Name="CarfId" Type="Int32" />
+                                                            </DeleteParameters>
+                                                            <InsertParameters>
+                                                                <asp:Parameter Name="CarfId" Type="Int32" />
+                                                                <asp:SessionParameter DefaultValue="0" Name="FipeId" SessionField="FipeId" Type="Int32" />
+                                                                <asp:Parameter Name="CarfNombres" Type="String" />
+                                                                <asp:Parameter Name="SexId" Type="Int32" />
+                                                                <asp:Parameter Name="VinId" Type="Int32" />
+                                                                <asp:Parameter Name="CarfEstado" Type="Int32" />
+                                                                <asp:Parameter Name="CarfEliminado" Type="Int32" />
+                                                                <asp:Parameter Name="CarFechaNacimiento" Type="String" />
+                                                            </InsertParameters>
+                                                            <SelectParameters>
+                                                                <asp:SessionParameter DefaultValue="0" Name="fipeId" SessionField="FipeId" Type="Int32" />
+                                                            </SelectParameters>
+                                                            <UpdateParameters>
+                                                                <asp:Parameter Name="CarfId" Type="Int32" />
+                                                                <asp:Parameter Name="FipeId" Type="Int32" />
+                                                                <asp:Parameter Name="CarfNombres" Type="String" />
+                                                                <asp:Parameter Name="SexId" Type="Int32" />
+                                                                <asp:Parameter Name="VinId" Type="Int32" />
+                                                                <asp:Parameter Name="CarfEstado" Type="Int32" />
+                                                                <asp:Parameter Name="CarfEliminado" Type="Int32" />
+                                                                <asp:Parameter Name="CarFechaNacimiento" Type="String" />
+                                                            </UpdateParameters>
+                                                        </asp:ObjectDataSource>
                                                     </div>
                                                 </div>
                                             </div>
@@ -227,27 +297,34 @@
                                                     </div>
                                                     <div class="cell colspan5">
 
-                                                        <dx:ASPxComboBox ID="cmbRegionPers" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" CssClass="select2-results__option--highlighted" DataSourceID="odsRegion" TextField="RegDescripcion" ValueField="RegId" DropDownStyle="DropDown" Native="True" SelectedIndex="0">
+                                                        <dx:ASPxComboBox ID="cmbRegionPers" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" CssClass="select2-results__option--highlighted" DataSourceID="odsRegion" TextField="RegDescripcion" ValueField="RegId" DropDownStyle="DropDown"  SelectedIndex="0">
                                                             <ClientSideEvents SelectedIndexChanged="function(s, e) {
 	cmbProvinciaPers.PerformCallback(s.GetValue());
 	cmbComunaPers.PerformCallback('0');
 }" />
                                                         </dx:ASPxComboBox>
-                                                        <asp:ObjectDataSource ID="odsRegion" runat="server" SelectMethod="ListarRegion" TypeName="VCFramework.NegocioMySql.RrhhRegion"></asp:ObjectDataSource>
+                                                        <asp:ObjectDataSource ID="odsRegion" runat="server" SelectMethod="ListarRegion" TypeName="VCFramework.NegocioMySql.RrhhRegion">
+                                                            <SelectParameters>
+                                                                <asp:Parameter DefaultValue="0" Name="defecto" Type="Int32" />
+                                                            </SelectParameters>
+                                                        </asp:ObjectDataSource>
                                                     </div>
                                                     <div class="cell colspan1">
                                                         <dx:ASPxLabel ID="ASPxLabel17" runat="server" Text="Provincia" Style="float: right; padding-right: 5PX;">
                                                         </dx:ASPxLabel>
                                                     </div>
                                                     <div class="cell colspan5">
-                                                        <dx:ASPxComboBox ID="cmbProvinciaPers" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" ClientInstanceName="cmbProvinciaPers" DataSourceID="odsProvincia" OnCallback="cmbProvinciaPers_Callback" TextField="ProvDescripcion" ValueField="ProvId" DropDownStyle="DropDown" Native="True">
+                                                        <dx:ASPxComboBox ID="cmbProvinciaPers" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" ClientInstanceName="cmbProvinciaPers" DataSourceID="odsProvincia" OnCallback="cmbProvinciaPers_Callback" TextField="ProvDescripcion" ValueField="ProvId" DropDownStyle="DropDown" >
                                                             <ClientSideEvents KeyDown="function(s, e) {
 	//alert(s.GetValue());
-}" SelectedIndexChanged="function(s, e) {
+}"
+                                                                SelectedIndexChanged="function(s, e) {
 	//alert('index');
-}" TextChanged="function(s, e) {
+}"
+                                                                TextChanged="function(s, e) {
 	//alert('text');
-}" ValueChanged="function(s, e) {
+}"
+                                                                ValueChanged="function(s, e) {
 	//alert(s.GetValue());
 cmbComunaPers.PerformCallback(s.GetValue());
 }" />
@@ -269,7 +346,7 @@ cmbComunaPers.PerformCallback(s.GetValue());
                                                     </div>
                                                     <div class="cell colspan5">
 
-                                                        <dx:ASPxComboBox ID="cmbComunaPers" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" ClientInstanceName="cmbComunaPers" DataSourceID="odsComuna" Native="True" OnCallback="cmbComunaPers_Callback" TextField="ComDescripcion" ValueField="ComId"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbComunaPers" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" ClientInstanceName="cmbComunaPers" DataSourceID="odsComuna"  OnCallback="cmbComunaPers_Callback" TextField="ComDescripcion" ValueField="ComId"></dx:ASPxComboBox>
                                                         <asp:ObjectDataSource ID="odsComuna" runat="server" SelectMethod="ListarComunasPorProvincia" TypeName="VCFramework.NegocioMySql.RrhhComuna">
                                                             <SelectParameters>
                                                                 <asp:ControlParameter ControlID="cmbProvinciaPers" DefaultValue="0" Name="idProv" PropertyName="Value" Type="Int32" />
@@ -285,62 +362,65 @@ cmbComunaPers.PerformCallback(s.GetValue());
                                                         </dx:ASPxTextBox>
                                                     </div>
                                                 </div>
+
+                                                <div class="row panel topRow">
+                                                    <div class="heading">
+                                                        <span class="title">Teléfono</span>
+                                                    </div>
+                                                    <div class="content padding-5">
+                                                        <!-- ACA VAN Celular, Casa -->
+                                                        <div class="row cells12 topRow">
+                                                            <div class="cell colspan1">
+                                                                <dx:ASPxLabel ID="ASPxLabel20" runat="server" Text="Celular">
+                                                                </dx:ASPxLabel>
+                                                            </div>
+                                                            <div class="cell colspan5">
+
+                                                                <dx:ASPxTextBox ID="txtCelularPers" runat="server" Native="True" Theme="Mulberry" Width="100%">
+                                                                </dx:ASPxTextBox>
+                                                            </div>
+                                                            <div class="cell colspan1">
+                                                                <dx:ASPxLabel ID="ASPxLabel21" runat="server" Text="Casa" Style="float: right; padding-right: 5PX;">
+                                                                </dx:ASPxLabel>
+                                                            </div>
+                                                            <div class="cell colspan5">
+                                                                <dx:ASPxTextBox ID="txtCasaPers" runat="server" Native="True" Theme="Mulberry" Width="100%">
+                                                                </dx:ASPxTextBox>
+                                                            </div>
+                                                        </div>
+                                                        <!-- ACA VAN Nombre contacto -->
+                                                        <div class="row cells12 topRow">
+                                                            <div class="cell colspan2">
+                                                                <dx:ASPxLabel ID="ASPxLabel22" runat="server" Text="Nombre Contacto">
+                                                                </dx:ASPxLabel>
+                                                            </div>
+                                                            <div class="cell colspan10">
+
+                                                                <dx:ASPxTextBox ID="txtNombreContacto" runat="server" Native="True" Theme="Mulberry" Width="100%">
+                                                                </dx:ASPxTextBox>
+                                                            </div>
+                                                        </div>
+                                                        <!-- ACA VAN telefono contacto -->
+                                                        <div class="row cells12 topRow">
+                                                            <div class="cell colspan2">
+                                                                <dx:ASPxLabel ID="ASPxLabel23" runat="server" Text="Telefono Contacto">
+                                                                </dx:ASPxLabel>
+                                                            </div>
+                                                            <div class="cell colspan4">
+
+                                                                <dx:ASPxTextBox ID="txtTelefContacto" runat="server" Native="True" Theme="Mulberry" Width="100%">
+                                                                </dx:ASPxTextBox>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
                                             </div>
+
+
+                                            
                                         </div>
-
-                                        <div class="row panel">
-                                            <div class="heading">
-                                                <span class="title">Teléfono</span>
-                                            </div>
-                                            <div class="content padding-5">
-                                                <!-- ACA VAN Celular, Casa -->
-                                                <div class="row cells12 topRow">
-                                                    <div class="cell colspan1">
-                                                        <dx:ASPxLabel ID="ASPxLabel20" runat="server" Text="Celular">
-                                                        </dx:ASPxLabel>
-                                                    </div>
-                                                    <div class="cell colspan5">
-
-                                                        <dx:ASPxTextBox ID="txtCelularPers" runat="server" Native="True" Theme="Mulberry" Width="100%">
-                                                        </dx:ASPxTextBox>
-                                                    </div>
-                                                    <div class="cell colspan1">
-                                                        <dx:ASPxLabel ID="ASPxLabel21" runat="server" Text="Casa" Style="float: right; padding-right: 5PX;">
-                                                        </dx:ASPxLabel>
-                                                    </div>
-                                                    <div class="cell colspan5">
-                                                        <dx:ASPxTextBox ID="txtCasaPers" runat="server" Native="True" Theme="Mulberry" Width="100%">
-                                                        </dx:ASPxTextBox>
-                                                    </div>
-                                                </div>
-                                                <!-- ACA VAN Nombre contacto -->
-                                                <div class="row cells12 topRow">
-                                                    <div class="cell colspan2">
-                                                        <dx:ASPxLabel ID="ASPxLabel22" runat="server" Text="Nombre Contacto">
-                                                        </dx:ASPxLabel>
-                                                    </div>
-                                                    <div class="cell colspan10">
-
-                                                        <dx:ASPxTextBox ID="txtNombreContacto" runat="server" Native="True" Theme="Mulberry" Width="100%">
-                                                        </dx:ASPxTextBox>
-                                                    </div>
-                                                </div>
-                                                <!-- ACA VAN telefono contacto -->
-                                                <div class="row cells12 topRow">
-                                                    <div class="cell colspan2">
-                                                        <dx:ASPxLabel ID="ASPxLabel23" runat="server" Text="Telefono Contacto">
-                                                        </dx:ASPxLabel>
-                                                    </div>
-                                                    <div class="cell colspan4">
-
-                                                        <dx:ASPxTextBox ID="txtTelefContacto" runat="server" Native="True" Theme="Mulberry" Width="100%">
-                                                        </dx:ASPxTextBox>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
 
 
                                     </dx:ContentControl>
@@ -361,14 +441,18 @@ cmbComunaPers.PerformCallback(s.GetValue());
                                                         </dx:ASPxLabel>
                                                     </div>
                                                     <div class="cell colspan5">
-                                                        <dx:ASPxComboBox ID="cmbEmpresa" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbEmpresa" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" ReadOnly="True" SelectedIndex="0">
+                                                            <Items>
+                                                                <dx:ListEditItem Selected="True" Text="Ingenieria SA" Value="1" />
+                                                            </Items>
+                                                        </dx:ASPxComboBox>
                                                     </div>
                                                     <div class="cell colspan1">
                                                         <dx:ASPxLabel ID="ASPxLabel25" runat="server" Text="Direccion" Style="float: right; padding-right: 5PX;">
                                                         </dx:ASPxLabel>
                                                     </div>
                                                     <div class="cell colspan5">
-                                                        <dx:ASPxTextBox ID="txtDirecEmpresa" runat="server" Native="True" Theme="Mulberry" Width="100%">
+                                                        <dx:ASPxTextBox ID="txtDirecEmpresa" runat="server" Native="True" Theme="Mulberry" Width="100%" ReadOnly="True">
                                                         </dx:ASPxTextBox>
                                                     </div>
 
@@ -381,7 +465,7 @@ cmbComunaPers.PerformCallback(s.GetValue());
                                                     </div>
                                                     <div class="cell colspan5">
 
-                                                        <dx:ASPxComboBox ID="cmbRegionEmp" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" Native="True" ClientInstanceName="cmbRegionEmp" DataSourceID="odsRegionEmp" SelectedIndex="0" TextField="RegDescripcion" ValueField="RegId">
+                                                        <dx:ASPxComboBox ID="cmbRegionEmp" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" ClientInstanceName="cmbRegionEmp" DataSourceID="odsRegionEmp" SelectedIndex="0" TextField="RegDescripcion" ValueField="RegId" ClientEnabled="False" ReadOnly="True">
                                                             <ClientSideEvents SelectedIndexChanged="function(s, e) {
 	cmbProvEmp.PerformCallback(s.GetValue());
 	cmbComEmp.PerformCallback('0');
@@ -395,7 +479,7 @@ cmbComunaPers.PerformCallback(s.GetValue());
                                                         </dx:ASPxLabel>
                                                     </div>
                                                     <div class="cell colspan5">
-                                                        <dx:ASPxComboBox ID="cmbProvEmp" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" Native="True" ClientInstanceName="cmbProvEmp" DataSourceID="odsProvEmp" OnCallback="cmbProvEmp_Callback" TextField="ProvDescripcion" ValueField="ProvId">
+                                                        <dx:ASPxComboBox ID="cmbProvEmp" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" ClientInstanceName="cmbProvEmp" DataSourceID="odsProvEmp" OnCallback="cmbProvEmp_Callback" TextField="ProvDescripcion" ValueField="ProvId" ClientEnabled="False" ReadOnly="True">
                                                             <ClientSideEvents ValueChanged="function(s, e) {
 	cmbComEmp.PerformCallback(s.GetValue());
 
@@ -416,7 +500,7 @@ cmbComunaPers.PerformCallback(s.GetValue());
                                                     </div>
                                                     <div class="cell colspan5">
 
-                                                        <dx:ASPxComboBox ID="cmbComunaEmp" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" Native="True" ClientInstanceName="cmbComEmp" DataSourceID="odsComEmp" OnCallback="cmbComunaEmp_Callback" TextField="ComDescripcion" ValueField="ComId"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbComunaEmp" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" ClientInstanceName="cmbComEmp" DataSourceID="odsComEmp" OnCallback="cmbComunaEmp_Callback" TextField="ComDescripcion" ValueField="ComId" ClientEnabled="False" ReadOnly="True"></dx:ASPxComboBox>
                                                         <asp:ObjectDataSource ID="odsComEmp" runat="server" SelectMethod="ListarComunasPorProvincia" TypeName="VCFramework.NegocioMySql.RrhhComuna">
                                                             <SelectParameters>
                                                                 <asp:ControlParameter ControlID="cmbProvEmp" DefaultValue="0" Name="idProv" PropertyName="Value" Type="Int32" />
@@ -428,158 +512,175 @@ cmbComunaPers.PerformCallback(s.GetValue());
                                                         </dx:ASPxLabel>
                                                     </div>
                                                     <div class="cell colspan5">
-                                                        <dx:ASPxTextBox ID="txtTelefonoEmp" runat="server" Native="True" Theme="Mulberry" Width="100%">
+                                                        <dx:ASPxTextBox ID="txtTelefonoEmp" runat="server" Native="True" Theme="Mulberry" Width="100%" ReadOnly="True">
                                                         </dx:ASPxTextBox>
                                                     </div>
                                                 </div>
 
+                                                <div class="row panel">
+                                                    <div class="heading">
+                                                        <span class="title">Datos Cargo</span>
+                                                    </div>
+                                                    <div class="content padding-5">
+                                                        <!-- ACA VAN tipo Contrato, Fecha ingreso, fecha fin -->
+                                                        <div class="row cells12 topRow">
+                                                            <div class="cell colspan1" style="padding-left: 5px;">
+                                                                <dx:ASPxLabel ID="ASPxLabel32" runat="server" Text="T. Contrato">
+                                                                </dx:ASPxLabel>
+                                                            </div>
+                                                            <div class="cell colspan3">
+                                                                <dx:ASPxComboBox ID="cmbTContrato" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsTipoContrato" TextField="TicoDescripcion" ValueField="TicoId"></dx:ASPxComboBox>
+                                                                <asp:ObjectDataSource ID="odsTipoContrato" runat="server" SelectMethod="ListarTipoContrato" TypeName="VCFramework.NegocioMySql.RrhhTipoContrato"></asp:ObjectDataSource>
+                                                            </div>
+                                                            <div class="cell colspan2">
+                                                                <dx:ASPxLabel ID="ASPxLabel30" runat="server" Text="Fecha Ingreso" Style="float: right; padding-right: 5PX;">
+                                                                </dx:ASPxLabel>
+                                                            </div>
+                                                            <div class="cell colspan2">
+                                                                <dx:ASPxDateEdit ID="dateFIngreso" runat="server" Theme="Mulberry" Width="100%"></dx:ASPxDateEdit>
+                                                            </div>
+                                                            <div class="cell colspan2">
+                                                                <dx:ASPxLabel ID="ASPxLabel31" runat="server" Text="Fecha Fin" Style="float: right; padding-right: 5PX;">
+                                                                </dx:ASPxLabel>
+                                                            </div>
+                                                            <div class="cell colspan2">
+                                                                <dx:ASPxDateEdit ID="dateFFin" runat="server" Theme="Mulberry" Width="100%"></dx:ASPxDateEdit>
+                                                            </div>
+                                                        </div>
+                                                        <!-- ACA VAN Area, Centro Costo -->
+                                                        <div class="row cells12 topRow">
+                                                            <div class="cell colspan1">
+                                                                <dx:ASPxLabel ID="ASPxLabel33" runat="server" Text="Area">
+                                                                </dx:ASPxLabel>
+                                                            </div>
+                                                            <div class="cell colspan5">
+
+                                                                <dx:ASPxComboBox ID="cmbArea" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsAreaNegocio" TextField="ArenDescripcion" ValueField="ArenId"></dx:ASPxComboBox>
+                                                                <asp:ObjectDataSource ID="odsAreaNegocio" runat="server" SelectMethod="ListarAreaNegocio" TypeName="VCFramework.NegocioMySql.RrhhAreaNegocio"></asp:ObjectDataSource>
+                                                            </div>
+                                                            <div class="cell colspan1">
+                                                                <dx:ASPxLabel ID="ASPxLabel34" runat="server" Text="C. Costo" Style="float: right; padding-right: 5PX;">
+                                                                </dx:ASPxLabel>
+                                                            </div>
+                                                            <div class="cell colspan5">
+                                                                <dx:ASPxComboBox ID="cmbCCosto" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsCentroCosto" TextField="CencDescripcion" ValueField="CencId"></dx:ASPxComboBox>
+                                                                <asp:ObjectDataSource ID="odsCentroCosto" runat="server" SelectMethod="ListarCentroCosto" TypeName="VCFramework.NegocioMySql.RrhhCentroCosto"></asp:ObjectDataSource>
+                                                            </div>
+                                                        </div>
+                                                        <!-- ACA VAN Cargo, Forma Pago -->
+                                                        <div class="row cells12 topRow">
+                                                            <div class="cell colspan1">
+                                                                <dx:ASPxLabel ID="ASPxLabel35" runat="server" Text="Cargo">
+                                                                </dx:ASPxLabel>
+                                                            </div>
+                                                            <div class="cell colspan5">
+
+                                                                <dx:ASPxComboBox ID="cmbCargo" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsCargo" TextField="CargDescripcion" ValueField="CargId"></dx:ASPxComboBox>
+                                                                <asp:ObjectDataSource ID="odsCargo" runat="server" SelectMethod="ListarCargo" TypeName="VCFramework.NegocioMySql.RrhhCargo"></asp:ObjectDataSource>
+                                                            </div>
+                                                            <div class="cell colspan1">
+                                                                <dx:ASPxLabel ID="ASPxLabel36" runat="server" Text="F. Pago" Style="float: right; padding-right: 5PX;">
+                                                                </dx:ASPxLabel>
+                                                            </div>
+                                                            <div class="cell colspan5">
+                                                                <dx:ASPxComboBox ID="cmbFormaPago" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsFPago" TextField="ForpDescripcion" ValueField="ForpId"></dx:ASPxComboBox>
+                                                                <asp:ObjectDataSource ID="odsFPago" runat="server" SelectMethod="ListarFPago" TypeName="VCFramework.NegocioMySql.RrhhFormaPago"></asp:ObjectDataSource>
+                                                            </div>
+                                                        </div>
+                                                        <!-- ACA VAN N Cta, Banco -->
+                                                        <div class="row cells12 topRow">
+                                                            <div class="cell colspan1">
+                                                                <dx:ASPxLabel ID="ASPxLabel37" runat="server" Text="N. Cuenta">
+                                                                </dx:ASPxLabel>
+                                                            </div>
+                                                            <div class="cell colspan5">
+
+                                                                <dx:ASPxTextBox ID="txtNCta" runat="server" Native="True" Theme="Mulberry" Width="100%">
+                                                                </dx:ASPxTextBox>
+                                                            </div>
+                                                            <div class="cell colspan1">
+                                                                <dx:ASPxLabel ID="ASPxLabel38" runat="server" Text="Banco" Style="float: right; padding-right: 5PX;">
+                                                                </dx:ASPxLabel>
+                                                            </div>
+                                                            <div class="cell colspan5">
+                                                                <dx:ASPxTextBox ID="txtBanco" runat="server" Native="True" Theme="Mulberry" Width="100%">
+                                                                </dx:ASPxTextBox>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row panel topRow">
+                                                            <div class="heading">
+                                                                <span class="title">Acceso</span>
+                                                            </div>
+                                                            <div class="content padding-5">
+                                                                <!-- ACA VAN Rol -->
+                                                                <div class="row cells12 topRow">
+                                                                    <div class="cell colspan1">
+                                                                        <dx:ASPxLabel ID="ASPxLabel39" runat="server" Text="ROL">
+                                                                        </dx:ASPxLabel>
+                                                                    </div>
+                                                                    <div class="cell colspan5">
+                                                                        <dx:ASPxComboBox ID="cmbRol" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsRol" TextField="RolDescripcion" ValueField="RolId"></dx:ASPxComboBox>
+                                                                        <asp:ObjectDataSource ID="odsRol" runat="server" SelectMethod="ListarRoles" TypeName="VCFramework.NegocioMySql.RrhhRol"></asp:ObjectDataSource>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- ACA VAN Usuario, contraseña -->
+                                                                <div class="row cells12 topRow">
+                                                                    <div class="cell colspan1">
+                                                                        <dx:ASPxLabel ID="ASPxLabel40" runat="server" Text="Usuario">
+                                                                        </dx:ASPxLabel>
+                                                                    </div>
+                                                                    <div class="cell colspan5">
+
+                                                                        <dx:ASPxTextBox ID="txtUsuario" runat="server" Native="True" Theme="Mulberry" Width="100%">
+                                                                        </dx:ASPxTextBox>
+                                                                    </div>
+                                                                    <div class="cell colspan1">
+                                                                        <dx:ASPxLabel ID="ASPxLabel41" runat="server" Text="Login" Style="float: right; padding-right: 5PX;">
+                                                                        </dx:ASPxLabel>
+                                                                    </div>
+                                                                    <div class="cell colspan5">
+                                                                        <dx:ASPxTextBox ID="txtLogin" runat="server" Native="True" Theme="Mulberry" Width="100%">
+                                                                        </dx:ASPxTextBox>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row" style="height:50px;"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                
                                             </div>
                                         </div>
-                                        <div class="row panel">
-                                            <div class="heading">
-                                                <span class="title">Datos Cargo</span>
-                                            </div>
-                                            <div class="content padding-5">
-                                                <!-- ACA VAN tipo Contrato, Fecha ingreso, fecha fin -->
-                                                <div class="row cells12 topRow">
-                                                    <div class="cell colspan1" style="padding-left: 5px;">
-                                                        <dx:ASPxLabel ID="ASPxLabel32" runat="server" Text="T. Contrato">
-                                                        </dx:ASPxLabel>
-                                                    </div>
-                                                    <div class="cell colspan3">
-                                                        <dx:ASPxComboBox ID="cmbTContrato" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsTipoContrato" Native="True" TextField="TicoDescripcion" ValueField="TicoId"></dx:ASPxComboBox>
-                                                        <asp:ObjectDataSource ID="odsTipoContrato" runat="server" SelectMethod="ListarTipoContrato" TypeName="VCFramework.NegocioMySql.RrhhTipoContrato"></asp:ObjectDataSource>
-                                                    </div>
-                                                    <div class="cell colspan2">
-                                                        <dx:ASPxLabel ID="ASPxLabel30" runat="server" Text="Fecha Ingreso" Style="float: right; padding-right: 5PX;">
-                                                        </dx:ASPxLabel>
-                                                    </div>
-                                                    <div class="cell colspan2">
-                                                        <dx:ASPxDateEdit ID="dateFIngreso" runat="server" Theme="Mulberry" Width="100%"></dx:ASPxDateEdit>
-                                                    </div>
-                                                    <div class="cell colspan2">
-                                                        <dx:ASPxLabel ID="ASPxLabel31" runat="server" Text="Fecha Fin" Style="float: right; padding-right: 5PX;">
-                                                        </dx:ASPxLabel>
-                                                    </div>
-                                                    <div class="cell colspan2">
-                                                        <dx:ASPxDateEdit ID="dateFFin" runat="server" Theme="Mulberry" Width="100%"></dx:ASPxDateEdit>
-                                                    </div>
-                                                </div>
-                                                <!-- ACA VAN Area, Centro Costo -->
-                                                <div class="row cells12 topRow">
-                                                    <div class="cell colspan1">
-                                                        <dx:ASPxLabel ID="ASPxLabel33" runat="server" Text="Area">
-                                                        </dx:ASPxLabel>
-                                                    </div>
-                                                    <div class="cell colspan5">
+                                        
 
-                                                        <dx:ASPxComboBox ID="cmbArea" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsAreaNegocio" Native="True" TextField="ArenDescripcion" ValueField="ArenId"></dx:ASPxComboBox>
-                                                        <asp:ObjectDataSource ID="odsAreaNegocio" runat="server" SelectMethod="ListarAreaNegocio" TypeName="VCFramework.NegocioMySql.RrhhAreaNegocio"></asp:ObjectDataSource>
-                                                    </div>
-                                                    <div class="cell colspan1">
-                                                        <dx:ASPxLabel ID="ASPxLabel34" runat="server" Text="C. Costo" Style="float: right; padding-right: 5PX;">
-                                                        </dx:ASPxLabel>
-                                                    </div>
-                                                    <div class="cell colspan5">
-                                                        <dx:ASPxComboBox ID="cmbCCosto" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsCentroCosto" Native="True" TextField="CencDescripcion" ValueField="CencId"></dx:ASPxComboBox>
-                                                        <asp:ObjectDataSource ID="odsCentroCosto" runat="server" SelectMethod="ListarCentroCosto" TypeName="VCFramework.NegocioMySql.RrhhCentroCosto"></asp:ObjectDataSource>
-                                                    </div>
-                                                </div>
-                                                <!-- ACA VAN Cargo, Forma Pago -->
-                                                <div class="row cells12 topRow">
-                                                    <div class="cell colspan1">
-                                                        <dx:ASPxLabel ID="ASPxLabel35" runat="server" Text="Cargo">
-                                                        </dx:ASPxLabel>
-                                                    </div>
-                                                    <div class="cell colspan5">
-
-                                                        <dx:ASPxComboBox ID="cmbCargo" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsCargo" Native="True" TextField="CargDescripcion" ValueField="CargId"></dx:ASPxComboBox>
-                                                        <asp:ObjectDataSource ID="odsCargo" runat="server" SelectMethod="ListarCargo" TypeName="VCFramework.NegocioMySql.RrhhCargo"></asp:ObjectDataSource>
-                                                    </div>
-                                                    <div class="cell colspan1">
-                                                        <dx:ASPxLabel ID="ASPxLabel36" runat="server" Text="F. Pago" Style="float: right; padding-right: 5PX;">
-                                                        </dx:ASPxLabel>
-                                                    </div>
-                                                    <div class="cell colspan5">
-                                                        <dx:ASPxComboBox ID="cmbFormaPago" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsFPago" Native="True" TextField="ForpDescripcion" ValueField="ForpId"></dx:ASPxComboBox>
-                                                        <asp:ObjectDataSource ID="odsFPago" runat="server" SelectMethod="ListarFPago" TypeName="VCFramework.NegocioMySql.RrhhFormaPago"></asp:ObjectDataSource>
-                                                    </div>
-                                                </div>
-                                                <!-- ACA VAN N Cta, Banco -->
-                                                <div class="row cells12 topRow">
-                                                    <div class="cell colspan1">
-                                                        <dx:ASPxLabel ID="ASPxLabel37" runat="server" Text="N. Cuenta">
-                                                        </dx:ASPxLabel>
-                                                    </div>
-                                                    <div class="cell colspan5">
-
-                                                        <dx:ASPxTextBox ID="txtNCta" runat="server" Native="True" Theme="Mulberry" Width="100%">
-                                                        </dx:ASPxTextBox>
-                                                    </div>
-                                                    <div class="cell colspan1">
-                                                        <dx:ASPxLabel ID="ASPxLabel38" runat="server" Text="Banco" Style="float: right; padding-right: 5PX;">
-                                                        </dx:ASPxLabel>
-                                                    </div>
-                                                    <div class="cell colspan5">
-                                                        <dx:ASPxTextBox ID="txtBanco" runat="server" Native="True" Theme="Mulberry" Width="100%">
-                                                        </dx:ASPxTextBox>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row panel">
-                                            <div class="heading">
-                                                <span class="title">Acceso</span>
-                                            </div>
-                                            <div class="content padding-5">
-                                                <!-- ACA VAN Rol -->
-                                                <div class="row cells12 topRow">
-                                                    <div class="cell colspan1">
-                                                        <dx:ASPxLabel ID="ASPxLabel39" runat="server" Text="ROL">
-                                                        </dx:ASPxLabel>
-                                                    </div>
-                                                    <div class="cell colspan5">
-                                                        <dx:ASPxComboBox ID="cmbRol" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" DataSourceID="odsRol" Native="True" TextField="RolDescripcion" ValueField="RolId"></dx:ASPxComboBox>
-                                                        <asp:ObjectDataSource ID="odsRol" runat="server" SelectMethod="ListarRoles" TypeName="VCFramework.NegocioMySql.RrhhRol"></asp:ObjectDataSource>
-                                                    </div>
-                                                </div>
-                                                <!-- ACA VAN Usuario, contraseña -->
-                                                <div class="row cells12 topRow">
-                                                    <div class="cell colspan1">
-                                                        <dx:ASPxLabel ID="ASPxLabel40" runat="server" Text="Usuario">
-                                                        </dx:ASPxLabel>
-                                                    </div>
-                                                    <div class="cell colspan5">
-
-                                                        <dx:ASPxTextBox ID="txtUsuario" runat="server" Native="True" Theme="Mulberry" Width="100%">
-                                                        </dx:ASPxTextBox>
-                                                    </div>
-                                                    <div class="cell colspan1">
-                                                        <dx:ASPxLabel ID="ASPxLabel41" runat="server" Text="Login" Style="float: right; padding-right: 5PX;">
-                                                        </dx:ASPxLabel>
-                                                    </div>
-                                                    <div class="cell colspan5">
-                                                        <dx:ASPxTextBox ID="txtLogin" runat="server" Native="True" Theme="Mulberry" Width="100%">
-                                                        </dx:ASPxTextBox>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
                                     </dx:ContentControl>
                                 </ContentCollection>
                             </dx:TabPage>
                         </TabPages>
                     </dx:ASPxPageControl>
+                    <!-- mensajes -->
+                    <div class="row cells12 topRow">
+                        <%--<dx:ASPxLabel ID="lblMensaje" runat="server" Text=""></dx:ASPxLabel>--%>
+                        <asp:Literal ID="lblMensaje" runat="server"></asp:Literal>
+                        <%--<i class="mif-checkmark large"></i><span>hola</span>--%>
+                    </div>
                     <!-- ACA VAN los botones -->
                     <div class="row cells12 topRow">
+                        <div class="cell colspan2">
+                            <dx:ASPxButton ID="btnVolver" CssClass="button alert" runat="server" Text="Salir" Native="true" Width="100%" PostBackUrl="~/Ficha/ListadoFicha.aspx"></dx:ASPxButton>
+                        </div>
                         <div class="cell colspan8">
                         </div>
+                        
                         <div class="cell colspan2">
-                            <dx:ASPxButton ID="btnVolver" CssClass="button alert" runat="server" Text="Volver" Native="true" Width="100%"></dx:ASPxButton>
-                        </div>
-                        <div class="cell colspan2">
-                            <dx:ASPxButton ID="btnGuardar" CssClass="button success" runat="server" Text="Guardar" Native="true" Width="100%" AutoPostBack="false"></dx:ASPxButton>
+                            <dx:ASPxButton ID="btnGuardar" CssClass="button success" runat="server" Text="Guardar" Native="true" Width="100%" AutoPostBack="false">
+                                <ClientSideEvents Click="function(s, e) {
+pnlPrincipal.PerformCallback(lblEstado.GetText());	
+}" />
+                            </dx:ASPxButton>
                         </div>
                     </div>
                 </dx:PanelContent>

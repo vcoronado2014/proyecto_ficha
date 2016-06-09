@@ -10,14 +10,7 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Volcando estructura de base de datos para rrhh
-DROP DATABASE IF EXISTS `rrhh`;
-CREATE DATABASE IF NOT EXISTS `rrhh` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `rrhh`;
-
-
 -- Volcando estructura para tabla rrhh.rrhh_afp
-DROP TABLE IF EXISTS `rrhh_afp`;
 CREATE TABLE IF NOT EXISTS `rrhh_afp` (
   `afp_id` int(11) NOT NULL AUTO_INCREMENT,
   `afp_descripcion` varchar(200) DEFAULT NULL,
@@ -39,7 +32,6 @@ INSERT INTO `rrhh_afp` (`afp_id`, `afp_descripcion`, `afp_porcentaje`, `afp_esta
 
 
 -- Volcando estructura para tabla rrhh.rrhh_area_negocio
-DROP TABLE IF EXISTS `rrhh_area_negocio`;
 CREATE TABLE IF NOT EXISTS `rrhh_area_negocio` (
   `aren_id` int(11) NOT NULL AUTO_INCREMENT,
   `aren_descripcion` varchar(200) DEFAULT NULL,
@@ -58,7 +50,6 @@ INSERT INTO `rrhh_area_negocio` (`aren_id`, `aren_descripcion`, `aren_estado`, `
 
 
 -- Volcando estructura para tabla rrhh.rrhh_caja_compensacion
-DROP TABLE IF EXISTS `rrhh_caja_compensacion`;
 CREATE TABLE IF NOT EXISTS `rrhh_caja_compensacion` (
   `cjac_id` int(11) NOT NULL AUTO_INCREMENT,
   `cjac_descripcion` varchar(200) DEFAULT NULL,
@@ -80,7 +71,6 @@ INSERT INTO `rrhh_caja_compensacion` (`cjac_id`, `cjac_descripcion`, `cjac_estad
 
 
 -- Volcando estructura para tabla rrhh.rrhh_carga_familiar
-DROP TABLE IF EXISTS `rrhh_carga_familiar`;
 CREATE TABLE IF NOT EXISTS `rrhh_carga_familiar` (
   `carf_id` int(11) NOT NULL AUTO_INCREMENT,
   `fipe_id` int(11) NOT NULL,
@@ -93,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `rrhh_carga_familiar` (
   PRIMARY KEY (`carf_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla rrhh.rrhh_carga_familiar: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla rrhh.rrhh_carga_familiar: ~2 rows (aproximadamente)
 DELETE FROM `rrhh_carga_familiar`;
 /*!40000 ALTER TABLE `rrhh_carga_familiar` DISABLE KEYS */;
 INSERT INTO `rrhh_carga_familiar` (`carf_id`, `fipe_id`, `carf_nombres`, `car_fecha_nacimiento`, `sex_id`, `vin_id`, `carf_estado`, `carf_eliminado`) VALUES
@@ -103,7 +93,6 @@ INSERT INTO `rrhh_carga_familiar` (`carf_id`, `fipe_id`, `carf_nombres`, `car_fe
 
 
 -- Volcando estructura para tabla rrhh.rrhh_cargo
-DROP TABLE IF EXISTS `rrhh_cargo`;
 CREATE TABLE IF NOT EXISTS `rrhh_cargo` (
   `carg_id` int(11) NOT NULL AUTO_INCREMENT,
   `carg_descripcion` varchar(200) DEFAULT NULL,
@@ -122,7 +111,6 @@ INSERT INTO `rrhh_cargo` (`carg_id`, `carg_descripcion`, `carg_estado`, `carg_el
 
 
 -- Volcando estructura para tabla rrhh.rrhh_centro_costo
-DROP TABLE IF EXISTS `rrhh_centro_costo`;
 CREATE TABLE IF NOT EXISTS `rrhh_centro_costo` (
   `cenc_id` int(11) NOT NULL AUTO_INCREMENT,
   `cenc_descripcion` varchar(200) DEFAULT NULL,
@@ -144,7 +132,6 @@ INSERT INTO `rrhh_centro_costo` (`cenc_id`, `cenc_descripcion`, `cenc_estado`, `
 
 
 -- Volcando estructura para tabla rrhh.rrhh_comuna
-DROP TABLE IF EXISTS `rrhh_comuna`;
 CREATE TABLE IF NOT EXISTS `rrhh_comuna` (
   `com_id` int(11) NOT NULL AUTO_INCREMENT,
   `prv_id` int(11) NOT NULL,
@@ -511,7 +498,6 @@ INSERT INTO `rrhh_comuna` (`com_id`, `prv_id`, `com_descripcion`, `com_estado`, 
 
 
 -- Volcando estructura para tabla rrhh.rrhh_control_permisos
-DROP TABLE IF EXISTS `rrhh_control_permisos`;
 CREATE TABLE IF NOT EXISTS `rrhh_control_permisos` (
   `cnpe_id` int(11) NOT NULL AUTO_INCREMENT,
   `fipe_id` int(11) NOT NULL,
@@ -535,7 +521,6 @@ DELETE FROM `rrhh_control_permisos`;
 
 
 -- Volcando estructura para tabla rrhh.rrhh_convenio_previsional
-DROP TABLE IF EXISTS `rrhh_convenio_previsional`;
 CREATE TABLE IF NOT EXISTS `rrhh_convenio_previsional` (
   `cnpe_id` int(11) NOT NULL AUTO_INCREMENT,
   `cnpe_descripcion` varchar(200) DEFAULT NULL,
@@ -552,7 +537,6 @@ DELETE FROM `rrhh_convenio_previsional`;
 
 
 -- Volcando estructura para tabla rrhh.rrhh_detalle_permisos
-DROP TABLE IF EXISTS `rrhh_detalle_permisos`;
 CREATE TABLE IF NOT EXISTS `rrhh_detalle_permisos` (
   `dtpe_id` int(11) NOT NULL AUTO_INCREMENT,
   `dtpe_nombre` varchar(100) DEFAULT NULL,
@@ -568,7 +552,6 @@ DELETE FROM `rrhh_detalle_permisos`;
 
 
 -- Volcando estructura para tabla rrhh.rrhh_empresa
-DROP TABLE IF EXISTS `rrhh_empresa`;
 CREATE TABLE IF NOT EXISTS `rrhh_empresa` (
   `emp_id` int(11) NOT NULL AUTO_INCREMENT,
   `emp_rut` varchar(100) DEFAULT NULL,
@@ -595,7 +578,6 @@ INSERT INTO `rrhh_empresa` (`emp_id`, `emp_rut`, `emp_razon_social`, `emp_giro`,
 
 
 -- Volcando estructura para tabla rrhh.rrhh_estado
-DROP TABLE IF EXISTS `rrhh_estado`;
 CREATE TABLE IF NOT EXISTS `rrhh_estado` (
   `estado_id` int(11) NOT NULL AUTO_INCREMENT,
   `estado_descripcion` varchar(200) DEFAULT NULL,
@@ -614,7 +596,6 @@ INSERT INTO `rrhh_estado` (`estado_id`, `estado_descripcion`, `estado_estado`, `
 
 
 -- Volcando estructura para tabla rrhh.rrhh_estado_civil
-DROP TABLE IF EXISTS `rrhh_estado_civil`;
 CREATE TABLE IF NOT EXISTS `rrhh_estado_civil` (
   `estc_id` int(11) NOT NULL AUTO_INCREMENT,
   `estc_descripcion` varchar(200) NOT NULL,
@@ -647,7 +628,6 @@ INSERT INTO `rrhh_estado_civil` (`estc_id`, `estc_descripcion`, `estc_estado`, `
 
 
 -- Volcando estructura para tabla rrhh.rrhh_ficha_personal
-DROP TABLE IF EXISTS `rrhh_ficha_personal`;
 CREATE TABLE IF NOT EXISTS `rrhh_ficha_personal` (
   `fipe_id` int(11) NOT NULL AUTO_INCREMENT,
   `fipe_rut` varchar(10) NOT NULL,
@@ -690,7 +670,7 @@ CREATE TABLE IF NOT EXISTS `rrhh_ficha_personal` (
   PRIMARY KEY (`fipe_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1612 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla rrhh.rrhh_ficha_personal: ~1.402 rows (aproximadamente)
+-- Volcando datos para la tabla rrhh.rrhh_ficha_personal: ~1.372 rows (aproximadamente)
 DELETE FROM `rrhh_ficha_personal`;
 /*!40000 ALTER TABLE `rrhh_ficha_personal` DISABLE KEYS */;
 INSERT INTO `rrhh_ficha_personal` (`fipe_id`, `fipe_rut`, `fipe_dv`, `fipe_nombres`, `fipe_apellido_paterno`, `fipe_apellido_materno`, `fipe_fecha_nacimiento`, `sexo_id`, `nac_id`, `fipe_direccion`, `com_id`, `reg_id`, `nive_id`, `estc_id`, `fipe_telefono_cel`, `fipe_telefono_casa`, `fipe_e_mail`, `emp_id`, `carg_id`, `aren_id`, `cenc_id`, `tico_id`, `fipe_fecha_ingreso`, `fipe_fecha_contrato_vigente`, `fipe_fecha_termino_contrato`, `fipe_numero_dias_vacaciones`, `rol_id`, `afp_id`, `isap_id`, `cjac_id`, `fipe_estado`, `fipe_eliminado`, `fipe_usuario`, `fipe_login`, `fipe_nombre_contacto`, `fipe_telefono_contacto`, `PROV_ID`, `FORP_ID`) VALUES
@@ -2070,7 +2050,6 @@ INSERT INTO `rrhh_ficha_personal` (`fipe_id`, `fipe_rut`, `fipe_dv`, `fipe_nombr
 
 
 -- Volcando estructura para tabla rrhh.rrhh_forma_pago
-DROP TABLE IF EXISTS `rrhh_forma_pago`;
 CREATE TABLE IF NOT EXISTS `rrhh_forma_pago` (
   `forp_id` int(11) NOT NULL AUTO_INCREMENT,
   `forp_descripcion` varchar(200) DEFAULT NULL,
@@ -2090,7 +2069,6 @@ INSERT INTO `rrhh_forma_pago` (`forp_id`, `forp_descripcion`, `forp_estado`, `fo
 
 
 -- Volcando estructura para tabla rrhh.rrhh_fpago_deposito
-DROP TABLE IF EXISTS `rrhh_fpago_deposito`;
 CREATE TABLE IF NOT EXISTS `rrhh_fpago_deposito` (
   `fpde_id` int(11) NOT NULL AUTO_INCREMENT,
   `forp_id` int(11) NOT NULL,
@@ -2102,7 +2080,7 @@ CREATE TABLE IF NOT EXISTS `rrhh_fpago_deposito` (
   PRIMARY KEY (`fpde_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla rrhh.rrhh_fpago_deposito: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla rrhh.rrhh_fpago_deposito: ~4 rows (aproximadamente)
 DELETE FROM `rrhh_fpago_deposito`;
 /*!40000 ALTER TABLE `rrhh_fpago_deposito` DISABLE KEYS */;
 INSERT INTO `rrhh_fpago_deposito` (`fpde_id`, `forp_id`, `fpde_banco`, `fpde_n_cuenta`, `fpde_estado`, `fpde_eliminado`, `fipe_id`) VALUES
@@ -2114,7 +2092,6 @@ INSERT INTO `rrhh_fpago_deposito` (`fpde_id`, `forp_id`, `fpde_banco`, `fpde_n_c
 
 
 -- Volcando estructura para tabla rrhh.rrhh_fpago_vista
-DROP TABLE IF EXISTS `rrhh_fpago_vista`;
 CREATE TABLE IF NOT EXISTS `rrhh_fpago_vista` (
   `fpvi_id` int(11) NOT NULL AUTO_INCREMENT,
   `forp_id` int(11) NOT NULL,
@@ -2134,7 +2111,6 @@ DELETE FROM `rrhh_fpago_vista`;
 
 
 -- Volcando estructura para tabla rrhh.rrhh_grupo_menu
-DROP TABLE IF EXISTS `rrhh_grupo_menu`;
 CREATE TABLE IF NOT EXISTS `rrhh_grupo_menu` (
   `GRP_ID` int(11) NOT NULL AUTO_INCREMENT,
   `GRP_ITEM` varchar(100) NOT NULL DEFAULT '0',
@@ -2159,7 +2135,6 @@ INSERT INTO `rrhh_grupo_menu` (`GRP_ID`, `GRP_ITEM`, `GRP_URL`, `GRP_VISIBLE`, `
 
 
 -- Volcando estructura para tabla rrhh.rrhh_isapre
-DROP TABLE IF EXISTS `rrhh_isapre`;
 CREATE TABLE IF NOT EXISTS `rrhh_isapre` (
   `isap_id` int(11) NOT NULL AUTO_INCREMENT,
   `isap_descripcion` varchar(200) DEFAULT NULL,
@@ -2208,7 +2183,6 @@ INSERT INTO `rrhh_isapre` (`isap_id`, `isap_descripcion`, `isap_porcentaje`, `is
 
 
 -- Volcando estructura para tabla rrhh.rrhh_nacionalidad
-DROP TABLE IF EXISTS `rrhh_nacionalidad`;
 CREATE TABLE IF NOT EXISTS `rrhh_nacionalidad` (
   `nac_id` int(11) NOT NULL AUTO_INCREMENT,
   `nac_descripcion` varchar(200) DEFAULT NULL,
@@ -2280,7 +2254,6 @@ INSERT INTO `rrhh_nacionalidad` (`nac_id`, `nac_descripcion`, `nac_estado`, `nac
 
 
 -- Volcando estructura para tabla rrhh.rrhh_nivel_estudios
-DROP TABLE IF EXISTS `rrhh_nivel_estudios`;
 CREATE TABLE IF NOT EXISTS `rrhh_nivel_estudios` (
   `nive_id` int(11) NOT NULL AUTO_INCREMENT,
   `nive_descripcion` varchar(200) DEFAULT NULL,
@@ -2326,7 +2299,6 @@ INSERT INTO `rrhh_nivel_estudios` (`nive_id`, `nive_descripcion`, `nive_estado`,
 
 
 -- Volcando estructura para tabla rrhh.rrhh_provincia
-DROP TABLE IF EXISTS `rrhh_provincia`;
 CREATE TABLE IF NOT EXISTS `rrhh_provincia` (
   `prov_id` int(11) NOT NULL AUTO_INCREMENT,
   `reg_id` int(11) NOT NULL,
@@ -2396,7 +2368,6 @@ INSERT INTO `rrhh_provincia` (`prov_id`, `reg_id`, `prov_descripcion`, `prov_est
 
 
 -- Volcando estructura para tabla rrhh.rrhh_region
-DROP TABLE IF EXISTS `rrhh_region`;
 CREATE TABLE IF NOT EXISTS `rrhh_region` (
   `reg_id` int(11) NOT NULL AUTO_INCREMENT,
   `reg_descripcion` varchar(200) DEFAULT NULL,
@@ -2428,7 +2399,6 @@ INSERT INTO `rrhh_region` (`reg_id`, `reg_descripcion`, `reg_estado`, `reg_elimi
 
 
 -- Volcando estructura para tabla rrhh.rrhh_rl_rol_menu
-DROP TABLE IF EXISTS `rrhh_rl_rol_menu`;
 CREATE TABLE IF NOT EXISTS `rrhh_rl_rol_menu` (
   `RL_ID` int(11) NOT NULL AUTO_INCREMENT,
   `ROL_ID` int(11) NOT NULL DEFAULT '0',
@@ -2492,7 +2462,6 @@ INSERT INTO `rrhh_rl_rol_menu` (`RL_ID`, `ROL_ID`, `SGRP_ID`, `RL_ACTIVO`, `RL_E
 
 
 -- Volcando estructura para tabla rrhh.rrhh_rol
-DROP TABLE IF EXISTS `rrhh_rol`;
 CREATE TABLE IF NOT EXISTS `rrhh_rol` (
   `rol_id` int(11) NOT NULL AUTO_INCREMENT,
   `rol_descripcion` varchar(200) DEFAULT NULL,
@@ -2513,7 +2482,6 @@ INSERT INTO `rrhh_rol` (`rol_id`, `rol_descripcion`, `rol_estado`, `rol_eliminad
 
 
 -- Volcando estructura para tabla rrhh.rrhh_sexo
-DROP TABLE IF EXISTS `rrhh_sexo`;
 CREATE TABLE IF NOT EXISTS `rrhh_sexo` (
   `sexo_id` int(11) NOT NULL AUTO_INCREMENT,
   `sexo_descripcion` varchar(200) DEFAULT NULL,
@@ -2536,7 +2504,6 @@ INSERT INTO `rrhh_sexo` (`sexo_id`, `sexo_descripcion`, `sexo_estado`, `sexo_eli
 
 
 -- Volcando estructura para tabla rrhh.rrhh_subgrupo_menu
-DROP TABLE IF EXISTS `rrhh_subgrupo_menu`;
 CREATE TABLE IF NOT EXISTS `rrhh_subgrupo_menu` (
   `SGRP_ID` int(11) NOT NULL AUTO_INCREMENT,
   `SGRP_ITEM` varchar(150) NOT NULL DEFAULT '0',
@@ -2576,7 +2543,6 @@ INSERT INTO `rrhh_subgrupo_menu` (`SGRP_ID`, `SGRP_ITEM`, `SGRP_URL`, `GRP_ID`, 
 
 
 -- Volcando estructura para tabla rrhh.rrhh_tipo_contrato
-DROP TABLE IF EXISTS `rrhh_tipo_contrato`;
 CREATE TABLE IF NOT EXISTS `rrhh_tipo_contrato` (
   `tico_id` int(11) NOT NULL AUTO_INCREMENT,
   `tico_descripcion` varchar(200) DEFAULT NULL,
@@ -2595,7 +2561,6 @@ INSERT INTO `rrhh_tipo_contrato` (`tico_id`, `tico_descripcion`, `tico_estado`, 
 
 
 -- Volcando estructura para tabla rrhh.rrhh_vinculacion
-DROP TABLE IF EXISTS `rrhh_vinculacion`;
 CREATE TABLE IF NOT EXISTS `rrhh_vinculacion` (
   `vin_id` int(11) NOT NULL AUTO_INCREMENT,
   `vin_descripcion` varchar(200) DEFAULT NULL,

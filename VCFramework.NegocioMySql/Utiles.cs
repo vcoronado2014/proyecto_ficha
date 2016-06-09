@@ -28,7 +28,7 @@ namespace VCFramework.NegocioMySql
 
         public static string NombreBaseDatos()
         {
-            string retorno = "'rrhh'";
+            string retorno = "'db_9dac90_rrhh'";
 
             if (System.Configuration.ConfigurationManager.AppSettings["NOMBRE_BD"] != null)
             {

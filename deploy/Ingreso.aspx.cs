@@ -15,8 +15,14 @@ public partial class Ingreso : System.Web.UI.Page
     protected void btnIngresar_Click(object sender, EventArgs e)
     {
 
+        //string otro = VCFramework.Entidad.Utiles.GetMd5Hash("pvicuna");
+
+        //bool verificar = VCFramework.Entidad.Utiles.VerifyMd5Hash("pvicuna", otro);
+        //acá cambió la implementación, ya que el txt del usuario debe ser verificado con md5
+        string hashUsuario = VCFramework.Entidad.Utiles.GetMd5Hash(user_login.Text);
+
         //obtenemos al usuario mediante una llamada directa a nuestro negocio
-        VCFramework.Entidad.RrhhFichaPersonal usuario = VCFramework.NegocioMySql.RrhhFichaPersonal.Validar(user_login.Text, user_password.Text);
+        VCFramework.Entidad.RrhhFichaPersonal usuario = VCFramework.NegocioMySql.RrhhFichaPersonal.Validar(hashUsuario, user_password.Text);
         //entonces, si el usuario tiene un id > 0 es un usuario válido, de lo contrario no lo es
 
         if (usuario.FipeId > 0)

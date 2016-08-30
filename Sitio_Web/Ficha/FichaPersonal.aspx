@@ -332,6 +332,10 @@
                                                                 ValueChanged="function(s, e) {
 	//alert(s.GetValue());
 cmbComunaPers.PerformCallback(s.GetValue());
+}" BeginCallback="function(s, e) {
+	s.SetEnabled(false);
+}" EndCallback="function(s, e) {
+	s.SetEnabled(true);
 }" />
                                                             <ButtonStyle CssClass="dxeButton dxeButtonEditButton_Mulberry">
                                                             </ButtonStyle>
@@ -351,7 +355,13 @@ cmbComunaPers.PerformCallback(s.GetValue());
                                                     </div>
                                                     <div class="cell colspan5">
 
-                                                        <dx:ASPxComboBox ID="cmbComunaPers" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" ClientInstanceName="cmbComunaPers" DataSourceID="odsComuna"  OnCallback="cmbComunaPers_Callback" TextField="ComDescripcion" ValueField="ComId"></dx:ASPxComboBox>
+                                                        <dx:ASPxComboBox ID="cmbComunaPers" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" ClientInstanceName="cmbComunaPers" DataSourceID="odsComuna"  OnCallback="cmbComunaPers_Callback" TextField="ComDescripcion" ValueField="ComId">
+                                                            <ClientSideEvents BeginCallback="function(s, e) {
+	s.SetEnabled(false);
+}" EndCallback="function(s, e) {
+	s.SetEnabled(true);
+}" />
+                                                        </dx:ASPxComboBox>
                                                         <asp:ObjectDataSource ID="odsComuna" runat="server" SelectMethod="ListarComunasPorProvincia" TypeName="VCFramework.NegocioMySql.RrhhComuna">
                                                             <SelectParameters>
                                                                 <asp:ControlParameter ControlID="cmbProvinciaPers" DefaultValue="0" Name="idProv" PropertyName="Value" Type="Int32" />
@@ -675,7 +685,7 @@ cmbComunaPers.PerformCallback(s.GetValue());
                     <!-- ACA VAN los botones -->
                     <div class="row cells12 topRow">
                         <div class="cell colspan2">
-                            <dx:ASPxButton ID="btnVolver" CssClass="button alert" runat="server" Text="Salir" Native="true" Width="100%" PostBackUrl="~/Ficha/ListadoFicha.aspx"></dx:ASPxButton>
+                            <dx:ASPxButton ID="btnVolver" CssClass="button alert" runat="server" Text="Salir" Native="true" Width="100%" PostBackUrl="~/Ficha/ListadoFicha.aspx" OnClick="btnVolver_Click"></dx:ASPxButton>
                         </div>
                         <div class="cell colspan8">
                         </div>

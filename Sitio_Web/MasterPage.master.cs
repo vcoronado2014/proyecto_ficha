@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -17,7 +18,19 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     #region init de la pagina
     protected void Page_Init(object sender, EventArgs e)
-    {
+    { 
+        if (Request.Form["usuario"] != null)
+        {
+            //en este request viene el hash en string
+            //entonces nos traemos el registro directamente
+            string hashUser = Request.Form["usuario"].ToString().Trim();
+            VCFramework.Entidad.RrhhFichaPersonal usuario = VCFramework.NegocioMySql.RrhhFichaPersonal.Validar(hashUser);
+            if (usuario.FipeId > 0)
+            {
+                Session["USUARIO_AUTENTICADO"] = usuario;
+            }
+        }
+
         VCFramework.Entidad.RrhhFichaPersonal usu = new VCFramework.Entidad.RrhhFichaPersonal();
         pnlDatos.Visible = true;
         if (Session["USUARIO_AUTENTICADO"] != null)

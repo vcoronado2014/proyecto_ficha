@@ -276,8 +276,9 @@ public partial class Ficha_FichaPersonal : System.Web.UI.Page
                             fpagoVista.FpviEliminado = 0;
                             fpagoVista.FpviEstado = 1;
                             fpagoVista.FpviNroCuenta = txtNCta.Text;
+                            fpagoVista.FpviSucursal = string.Empty;
                             //fpagoVista.FpviSucursal 
-                            fac.Insertar<VCFramework.Entidad.RrhhFpagoVista>(fpagoVista);
+                            fac.Insertar<VCFramework.Entidad.RrhhFpagoVista>(fpagoVista, "FPVI_ID");
 
                         }
                         break;
@@ -301,7 +302,7 @@ public partial class Ficha_FichaPersonal : System.Web.UI.Page
                             fpagoDeposito.FpdeEstado = 1;
                             fpagoDeposito.FpdeNCuenta = txtNCta.Text;
                             //fpagoVista.FpviSucursal 
-                            fac.Insertar<VCFramework.Entidad.RrhhFpagoDeposito>(fpagoDeposito);
+                            fac.Insertar<VCFramework.Entidad.RrhhFpagoDeposito>(fpagoDeposito, "FPDE_ID");
 
                         }
                         break;
@@ -530,6 +531,7 @@ public partial class Ficha_FichaPersonal : System.Web.UI.Page
             if (idReg > 0)
             {
                 CargarProvinciasPersona(idReg);
+                cmbProvinciaPers.SelectedIndex = 0;
             }
         }
     }
@@ -542,6 +544,7 @@ public partial class Ficha_FichaPersonal : System.Web.UI.Page
             if (idPrv > 0)
             {
                 CargarComunasPersona(idPrv);
+                cmbComunaPers.SelectedIndex = 0;
             }
         }
     }
@@ -565,6 +568,7 @@ public partial class Ficha_FichaPersonal : System.Web.UI.Page
             if (idReg > 0)
             {
                 CargarProvinciasEmpleado(idReg);
+                cmbProvEmp.SelectedIndex = 0;
             }
         }
     }
@@ -577,6 +581,7 @@ public partial class Ficha_FichaPersonal : System.Web.UI.Page
             if (idPrv > 0)
             {
                 CargarComunasEmpleado(idPrv);
+                cmbComunaEmp.SelectedIndex = 0;
             }
         }
     }
@@ -624,5 +629,10 @@ public partial class Ficha_FichaPersonal : System.Web.UI.Page
                 }
             }
         }
+    }
+
+    protected void btnVolver_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("ListadoFicha.aspx");
     }
 }

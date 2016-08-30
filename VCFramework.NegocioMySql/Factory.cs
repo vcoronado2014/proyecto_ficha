@@ -141,6 +141,78 @@ namespace VCFramework.NegocioMySql
             return Convert.ToInt32(ultimoId);
         }
 
+        public int Insertar<T>(T objeto, string nombreIdDB)
+        {
+            long ultimoId = 0;
+            ObjetoTransformar obj = ProcesarEntidad(objeto.GetType());
+
+            int filasAfectadas = 0;
+            Type tipo = objeto.GetType();
+            var propiedades = tipo.GetProperties();
+            var campos = new StringBuilder();
+            var variables = new StringBuilder();
+
+            for (int i = 0; i < propiedades.Length; i++)
+            {
+                if (propiedades[i].Name != "Nuevo" &&
+                    propiedades[i].Name != "Borrado" && propiedades[i].Name != "Modificado" && propiedades[i].Name != "TimeStamp")
+                {
+                    object valor = propiedades[i].GetValue(objeto, null);
+                    CamposTabla campo = obj.ListaCampos.Find(p => p.NombreEntidad == propiedades[i].Name);
+                    if (campo != null)
+                    {
+                        campo.ValorEntidad = valor;
+                    }
+
+                }
+            }
+            if (obj.ListaCampos.Count > 0)
+            {
+                for (int i = 0; i < obj.ListaCampos.Count; i++)
+                {
+                    string nombreCampo = obj.ListaCampos[i].NombreColumna;
+                    if (nombreCampo.ToUpper() != nombreIdDB.ToUpper())
+                    {
+                        campos.Append(obj.ListaCampos[i].NombreColumna);
+                        variables.Append("?");
+                        if (i < obj.ListaCampos.Count - 1)
+                        {
+                            campos.Append(", ");
+                            variables.Append(", ");
+                        }
+                    }
+                }
+            }
+
+            //en este momento ya tenemos los valores de los elementos y la lista de elementos en sql
+            string conString = WebConfigurationManager.
+                ConnectionStrings[Utiles.CNS].ConnectionString;
+            using (OdbcConnection con = new OdbcConnection(conString))
+            using (OdbcCommand cmd = new OdbcCommand(string.Format("INSERT INTO {0} ({1}) VALUES ({2})", obj.NombreTabla, campos, variables), con))
+            {
+                con.Open();
+
+                foreach (CamposTabla campo in obj.ListaCampos)
+                {
+                    if (campo.NombreColumna.ToUpper() != nombreIdDB.ToUpper())
+                        cmd.Parameters.Add("@" + campo.NombreColumna, ObtenerTipoODBC(campo)).Value = campo.ValorEntidad;
+                }
+
+                cmd.ExecuteNonQuery();
+                //pruebas de last insert id
+                cmd.CommandText = "SELECT LAST_INSERT_ID()";
+                OdbcDataReader reader = cmd.ExecuteReader();
+                if (reader != null && reader.Read())
+                    ultimoId = reader.GetInt64(0);
+
+                filasAfectadas++;
+                con.Close();
+            }
+
+
+            return Convert.ToInt32(ultimoId);
+        }
+
         /// <summary>
         /// Actualiza un Regitro
         /// </summary>

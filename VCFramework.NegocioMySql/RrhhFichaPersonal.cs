@@ -15,6 +15,37 @@ namespace VCFramework.NegocioMySql
                 entidad = entidades[0];
             return entidad;
         }
+        public static Entidad.RrhhFichaPersonal Validar(string nombreUsuario)
+        {
+            Entidad.RrhhFichaPersonal entidad = new Entidad.RrhhFichaPersonal();
+            List<Entidad.RrhhFichaPersonal> entidades = ListarPersonalPorUsuario(nombreUsuario);
+            if (entidades != null && entidades.Count == 1)
+                entidad = entidades[0];
+            return entidad;
+        }
+        public static List<VCFramework.Entidad.RrhhFichaPersonal> ListarPersonalPorUsuario(string usuario)
+        {
+            VCFramework.NegocioMySql.Factory fac = new VCFramework.NegocioMySql.Factory();
+            List<FiltroGenerico> filtros = new List<FiltroGenerico>();
+
+            FiltroGenerico filtro = new FiltroGenerico();
+            filtro.Campo = "FIPE_USUARIO";
+            filtro.Valor = usuario.ToString();
+            filtro.TipoDato = TipoDatoGeneral.Varchar;
+
+
+            //agregamos al filtro
+            filtros.Add(filtro);
+ 
+
+            List<object> lista = fac.Leer<VCFramework.Entidad.RrhhFichaPersonal>(filtros);
+            List<VCFramework.Entidad.RrhhFichaPersonal> lista2 = new List<VCFramework.Entidad.RrhhFichaPersonal>();
+            if (lista != null)
+            {
+                lista2 = lista.Cast<VCFramework.Entidad.RrhhFichaPersonal>().ToList();
+            }
+            return lista2;
+        }
         public static List<VCFramework.Entidad.RrhhFichaPersonal> ListarPersonalPorUsuarioYPasword(string usuario, string password)
         {
             VCFramework.NegocioMySql.Factory fac = new VCFramework.NegocioMySql.Factory();
@@ -127,6 +158,7 @@ namespace VCFramework.NegocioMySql
 
                     detalle.AppendFormat("Rut: {0}, Fecha Nacimiento: {1}, Teléfono Celular: {2}, Teléfono Casa: {3}, Email: {4}", ficha.FipeRut.ToString() + ficha.FipeDv.ToString().ToUpper(), ficha.FipeFechaNacimiento.ToShortDateString(), ficha.FipeTelefonocel, ficha.FipeTelefonoCasa, ficha.FipeEMail);
                     fic.Detalle = detalle.ToString();
+                    fic.NombreCompleto = fic.NombreCompleto + ", " + fic.Rut;
                     lista.Add(fic);
                 }
             }

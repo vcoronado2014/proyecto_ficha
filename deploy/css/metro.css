@@ -9663,6 +9663,8 @@ input[type="submit"].alert {
   background: #ce352c;
   color: #ffffff;
   border-color: #ce352c;
+    top: 0px;
+    left: 0px;
 }
 input[type="button"].danger:active,
 input[type="reset"].danger:active,

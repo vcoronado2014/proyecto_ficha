@@ -5,7 +5,7 @@ using System.Text;
 
 namespace VCFramework.Entidad
 {
-    class RrhhControlPermisos
+    public class RrhhControlPermisos
     {
         public int CnpeId { get; set; }
         public int FipeId { get; set; }
@@ -14,7 +14,8 @@ namespace VCFramework.Entidad
         public DateTime CnpeFechaFin { get; set; }
         public int CnpeDiasHabiles { get; set; }
         public string CnpeObservacion { get; set; }
-        public int CnpeEstado { get; set; }
+        public int EstadoId { get; set; }
         public int CnpeEliminado { get; set; }
+        public int FipeIdAsignado { get; set; }
     }
 }

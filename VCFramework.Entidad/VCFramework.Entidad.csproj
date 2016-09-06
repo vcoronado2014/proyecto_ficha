@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EstadoPermiso.cs" />
+    <Compile Include="Jefes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RrhhAfp.cs" />
     <Compile Include="RrhhAreaNegocio.cs" />
@@ -49,7 +51,7 @@
     <Compile Include="RrhhCentroCosto.cs" />
     <Compile Include="RrhhComuna.cs" />
     <Compile Include="RrhhControlPermisos.cs" />
-    <Compile Include="RrhhDetallePermiso.cs" />
+    <Compile Include="RrhhDetallePermisos.cs" />
     <Compile Include="RrhhEmpresa.cs" />
     <Compile Include="RrhhEstado.cs" />
     <Compile Include="RrhhEstadoCivil.cs" />

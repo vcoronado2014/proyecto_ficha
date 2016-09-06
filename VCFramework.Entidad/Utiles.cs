@@ -52,5 +52,28 @@ namespace VCFramework.Entidad
                 }
             }
         }
+
+        public static int DiferenciaDias(DateTime fechaIni, DateTime fechaTer)
+        {
+            //TimeSpan ts = fechaTer - fechaIni;
+            //int differenceInDays = ts.Days;
+
+            //return differenceInDays;
+
+            DateTime desde = fechaIni;
+            DateTime hasta = fechaTer;
+            int dias_habiles = 0;
+
+            while (desde < hasta)
+            {
+                int numero_dia = Convert.ToInt16(desde.DayOfWeek.ToString("d"));
+                if (numero_dia == 1 || numero_dia == 2 || numero_dia == 3 || numero_dia == 4 || numero_dia == 5)
+                {
+                    dias_habiles++;
+                }
+                desde = desde.AddDays(1);
+            }
+            return dias_habiles;
+        }
     }
 }

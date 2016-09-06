@@ -7,7 +7,7 @@
     <title></title>
 </head>
 <body>
-<FORM ACTION="http://localhost:26595/default.aspx" METHOD="POST"> 
+<FORM ACTION="http://rrhh.cpas.cl/default.aspx" METHOD="POST"> 
 Introduzca su nombre:<INPUT TYPE="text" NAME="usuario"><BR> 
 <INPUT TYPE="submit" VALUE="Enviar"> 
 </FORM> 

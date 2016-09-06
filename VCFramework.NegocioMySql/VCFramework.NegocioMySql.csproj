@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Cache.cs" />
     <Compile Include="EnvoltorioMenu.cs" />
+    <Compile Include="EstadoPermiso.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RrhhAfp.cs" />
@@ -53,6 +54,8 @@
     <Compile Include="RrhhCargo.cs" />
     <Compile Include="RrhhCentroCosto.cs" />
     <Compile Include="RrhhComuna.cs" />
+    <Compile Include="RrhhControlPermisos.cs" />
+    <Compile Include="RrhhDetallePermiso.cs" />
     <Compile Include="RrhhEmpresa.cs" />
     <Compile Include="RrhhEstadoCivil.cs" />
     <Compile Include="RrhhFichaPersonal.cs" />

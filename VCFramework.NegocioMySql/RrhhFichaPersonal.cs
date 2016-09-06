@@ -46,6 +46,48 @@ namespace VCFramework.NegocioMySql
             }
             return lista2;
         }
+        public static List<VCFramework.Entidad.RrhhFichaPersonal> ListarJefes()
+        {
+            
+            VCFramework.NegocioMySql.Factory fac = new VCFramework.NegocioMySql.Factory();
+            List<FiltroGenerico> filtros = new List<FiltroGenerico>();
+
+            FiltroGenerico filtro = new FiltroGenerico();
+            filtro.Campo = "ROL_ID";
+            filtro.Valor = "3";
+            filtro.TipoDato = TipoDatoGeneral.Entero;
+
+            filtros.Add(filtro);
+
+            List<object> lista = fac.Leer<VCFramework.Entidad.RrhhFichaPersonal>(filtros);
+            List<VCFramework.Entidad.RrhhFichaPersonal> lista2 = new List<VCFramework.Entidad.RrhhFichaPersonal>();
+            if (lista != null)
+            {
+                lista2 = lista.Cast<VCFramework.Entidad.RrhhFichaPersonal>().ToList();
+            }
+            return lista2;
+        }
+
+        public static List<Entidad.Jefes> ListarJefesGrilla()
+        {
+            List<VCFramework.Entidad.RrhhFichaPersonal> jefesProcesar = ListarJefes();
+            List<Entidad.Jefes> retorno = new List<Entidad.Jefes>();
+            if (jefesProcesar != null && jefesProcesar.Count > 0)
+            {
+                foreach(Entidad.RrhhFichaPersonal ficha in jefesProcesar)
+                {
+                    Entidad.Jefes jefe = new Entidad.Jefes();
+                    jefe.Id = ficha.FipeId;
+                    jefe.Nombre = ficha.FipeNombres + " " + ficha.FipeApellidoPaterno + " " + ficha.FipeApellidoMaterno;
+                    retorno.Add(jefe);
+
+                }
+            }
+
+            return retorno;
+
+        }
+
         public static List<VCFramework.Entidad.RrhhFichaPersonal> ListarPersonalPorUsuarioYPasword(string usuario, string password)
         {
             VCFramework.NegocioMySql.Factory fac = new VCFramework.NegocioMySql.Factory();

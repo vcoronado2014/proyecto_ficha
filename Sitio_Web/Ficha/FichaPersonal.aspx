@@ -1,38 +1,49 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="FichaPersonal.aspx.cs" Inherits="Ficha_FichaPersonal" %>
 
-<%@ Register assembly="DevExpress.Web.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <link href="../css/metro.css" rel="stylesheet"/>
-    
-    <link href="../css/metro-responsive.css" rel="stylesheet"/>
-    <link href="../css/metro-schemes.css" rel="stylesheet"/>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <link href="../css/metro.css" rel="stylesheet" />
 
-    <link href="../css/docs.css" rel="stylesheet"/>
-    <link href="../css/metro-icons.css" rel="stylesheet"/>
-    
+    <link href="../css/metro-responsive.css" rel="stylesheet" />
+    <link href="../css/metro-schemes.css" rel="stylesheet" />
+
+    <link href="../css/docs.css" rel="stylesheet" />
+    <link href="../css/metro-icons.css" rel="stylesheet" />
+
     <script src="../js/jquery-2.1.3.min.js"></script>
     <script src="../js/metro.js"></script>
     <script src="../js/docs.js"></script>
     <script src="../js/prettify/run_prettify.js"></script>
     <script src="../js/ga.js"></script>
     <style type="text/css">
-        .topRow{
-            padding-top:5px;
+        .topRow {
+            padding-top: 5px;
         }
-        .font-xx-large{
-                font-size: xx-large;
+
+        .font-xx-large {
+            font-size: xx-large;
         }
-        .font-x-large{
-                font-size: x-large;
+
+        .font-x-large {
+            font-size: x-large;
         }
-        .bg-red{background-color:red;}
-        .bg-blue {background-color:darkblue;}
-        .padding-10px{padding:10px;}
+
+        .bg-red {
+            background-color: red;
+        }
+
+        .bg-blue {
+            background-color: darkblue;
+        }
+
+        .padding-10px {
+            padding: 10px;
+        }
     </style>
 
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <div class="row">
 
@@ -40,7 +51,7 @@
             <PanelCollection>
                 <dx:PanelContent runat="server">
                     <dx:ASPxLabel ID="lblEstado" ClientInstanceName="lblEstado" runat="server" Text="" ClientVisible="false"></dx:ASPxLabel>
-                    <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="0" Theme="Mulberry" Width="100%" OnActiveTabChanged="ASPxPageControl1_ActiveTabChanged">
+                    <dx:ASPxPageControl ID="ASPxPageControl1" runat="server" ActiveTabIndex="2" Theme="Mulberry" Width="100%" OnActiveTabChanged="ASPxPageControl1_ActiveTabChanged">
                         <TabPages>
                             <dx:TabPage Text="Personales">
                                 <ContentCollection>
@@ -69,7 +80,8 @@
                                                         <dx:ASPxTextBox ID="txtDv" runat="server" Native="True" Theme="Mulberry" Width="100%" ClientInstanceName="txtDv" MaxLength="1">
                                                             <ClientSideEvents KeyUp="function(s, e) {
 //alert('ajax');	
-}" LostFocus="function(s, e) {
+}"
+                                                                LostFocus="function(s, e) {
 	//alert('ajax');
 	if (s.GetText() != '' &amp;&amp; txtRun.GetText() != '')
 	pnlPrincipal.PerformCallback('BUSCAR|' + txtRun.GetText() + '|' + s.GetText());
@@ -302,7 +314,7 @@
                                                     </div>
                                                     <div class="cell colspan5">
 
-                                                        <dx:ASPxComboBox ID="cmbRegionPers" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" CssClass="select2-results__option--highlighted" DataSourceID="odsRegion" TextField="RegDescripcion" ValueField="RegId" DropDownStyle="DropDown"  SelectedIndex="0">
+                                                        <dx:ASPxComboBox ID="cmbRegionPers" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" CssClass="select2-results__option--highlighted" DataSourceID="odsRegion" TextField="RegDescripcion" ValueField="RegId" DropDownStyle="DropDown" SelectedIndex="0">
                                                             <ClientSideEvents SelectedIndexChanged="function(s, e) {
 	cmbProvinciaPers.PerformCallback(s.GetValue());
 	cmbComunaPers.PerformCallback('0');
@@ -319,7 +331,7 @@
                                                         </dx:ASPxLabel>
                                                     </div>
                                                     <div class="cell colspan5">
-                                                        <dx:ASPxComboBox ID="cmbProvinciaPers" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" ClientInstanceName="cmbProvinciaPers" DataSourceID="odsProvincia" OnCallback="cmbProvinciaPers_Callback" TextField="ProvDescripcion" ValueField="ProvId" DropDownStyle="DropDown" >
+                                                        <dx:ASPxComboBox ID="cmbProvinciaPers" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" ClientInstanceName="cmbProvinciaPers" DataSourceID="odsProvincia" OnCallback="cmbProvinciaPers_Callback" TextField="ProvDescripcion" ValueField="ProvId" DropDownStyle="DropDown">
                                                             <ClientSideEvents KeyDown="function(s, e) {
 	//alert(s.GetValue());
 }"
@@ -332,9 +344,11 @@
                                                                 ValueChanged="function(s, e) {
 	//alert(s.GetValue());
 cmbComunaPers.PerformCallback(s.GetValue());
-}" BeginCallback="function(s, e) {
+}"
+                                                                BeginCallback="function(s, e) {
 	s.SetEnabled(false);
-}" EndCallback="function(s, e) {
+}"
+                                                                EndCallback="function(s, e) {
 	s.SetEnabled(true);
 }" />
                                                             <ButtonStyle CssClass="dxeButton dxeButtonEditButton_Mulberry">
@@ -355,10 +369,11 @@ cmbComunaPers.PerformCallback(s.GetValue());
                                                     </div>
                                                     <div class="cell colspan5">
 
-                                                        <dx:ASPxComboBox ID="cmbComunaPers" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" ClientInstanceName="cmbComunaPers" DataSourceID="odsComuna"  OnCallback="cmbComunaPers_Callback" TextField="ComDescripcion" ValueField="ComId">
+                                                        <dx:ASPxComboBox ID="cmbComunaPers" runat="server" ValueType="System.String" Width="100%" Theme="Mulberry" ClientInstanceName="cmbComunaPers" DataSourceID="odsComuna" OnCallback="cmbComunaPers_Callback" TextField="ComDescripcion" ValueField="ComId">
                                                             <ClientSideEvents BeginCallback="function(s, e) {
 	s.SetEnabled(false);
-}" EndCallback="function(s, e) {
+}"
+                                                                EndCallback="function(s, e) {
 	s.SetEnabled(true);
 }" />
                                                         </dx:ASPxComboBox>
@@ -434,7 +449,7 @@ cmbComunaPers.PerformCallback(s.GetValue());
                                             </div>
 
 
-                                            
+
                                         </div>
 
 
@@ -659,18 +674,18 @@ cmbComunaPers.PerformCallback(s.GetValue());
                                                                         </dx:ASPxTextBox>
                                                                     </div>
                                                                 </div>
-                                                                <div class="row" style="height:50px;"></div>
+                                                                <div class="row" style="height: 50px;"></div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                
+
                                             </div>
                                         </div>
-                                        
 
-                                        
+
+
                                     </dx:ContentControl>
                                 </ContentCollection>
                             </dx:TabPage>
@@ -689,7 +704,7 @@ cmbComunaPers.PerformCallback(s.GetValue());
                         </div>
                         <div class="cell colspan8">
                         </div>
-                        
+
                         <div class="cell colspan2">
                             <dx:ASPxButton ID="btnGuardar" CssClass="button success" runat="server" Text="Guardar" Native="true" Width="100%" AutoPostBack="false">
                                 <ClientSideEvents Click="function(s, e) {

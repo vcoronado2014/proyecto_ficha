@@ -17,5 +17,7 @@ namespace VCFramework.Entidad
         public int EstadoId { get; set; }
         public int CnpeEliminado { get; set; }
         public int FipeIdAsignado { get; set; }
+        public string ObservacionJefe { get; set; }
+        public DateTime FechaObsJefe { get; set; }
     }
 }

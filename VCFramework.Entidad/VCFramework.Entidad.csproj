@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnvoltorioPermisosJefe.cs" />
     <Compile Include="EstadoPermiso.cs" />
     <Compile Include="Jefes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

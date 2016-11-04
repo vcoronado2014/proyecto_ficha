@@ -93,6 +93,8 @@ namespace VCFramework.NegocioMySql
             nuevoPermiso.DtpeId = DtpeId;
             nuevoPermiso.FipeId = FipeId;
             nuevoPermiso.FipeIdAsignado = FipeIdAsignado;
+            nuevoPermiso.ObservacionJefe = "";
+            nuevoPermiso.FechaObsJefe = DateTime.MinValue;
 
             if (CnpeFechaInicio <= DateTime.Now)
                 throw new Exception("La fecha de Inicio del permiso debe ser superior a la actual");

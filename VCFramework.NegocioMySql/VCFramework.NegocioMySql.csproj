@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Cache.cs" />
     <Compile Include="EnvoltorioMenu.cs" />
+    <Compile Include="EnvoltorioPermisosJefe.cs" />
     <Compile Include="EstadoPermiso.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
